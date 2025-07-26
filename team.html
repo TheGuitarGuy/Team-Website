@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Team - Capstone Project</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'cr-green': '#00B96F',
+            'cr-dark': '#111827',
+            'cr-slate': '#6B7280',
+            'cr-light-gray': '#F3F4F6',
+          }
+        }
+      }
+    }
+    </script>
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-white text-cr-dark flex flex-col min-h-screen">
+
+    <header class="border-b border-gray-200 sticky top-0 bg-white/80 backdrop-blur-lg z-20">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex-shrink-0">
+                    <a href="index.html" class="text-2xl font-bold text-cr-dark">Best Time to Buy <span class="text-cr-green">2.0</span></a>
+                </div>
+                <nav class="hidden md:flex md:space-x-8">
+                    <a href="solution.html" class="text-cr-slate hover:text-cr-green">Our Solution</a>
+                    <a href="team.html" class="text-cr-green font-semibold">The Team</a>
+                    <a href="process.html" class="text-cr-slate hover:text-cr-green">Our Process</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow">
+        <section id="team" class="py-20 sm:py-24">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="max-w-3xl mx-auto text-center">
+                    <h2 class="text-3xl font-bold tracking-tight text-cr-dark sm:text-4xl">The Team</h2>
+                    <p class="mt-4 text-lg text-cr-slate">
+                        Meet the talented individuals who brought this project to life.
+                    </p>
+                </div>
+                <div class="mt-16 grid gap-12 sm:grid-cols-2 lg:grid-cols-4">
+                    <div class="text-center">
+                        <img class="mx-auto h-32 w-32 rounded-full bg-cr-light-gray" src="https://placehold.co/256x256/E0E7FF/4338CA?text=TM" alt="Team Member 1">
+                        <h3 class="mt-6 text-base font-semibold leading-7 tracking-tight text-cr-dark">Team Member Name</h3>
+                        <p class="text-sm leading-6 text-cr-slate">Role (e.g., Project Manager)</p>
+                    </div>
+                    <div class="text-center">
+                        <img class="mx-auto h-32 w-32 rounded-full bg-cr-light-gray" src="https://placehold.co/256x256/E0E7FF/4338CA?text=TM" alt="Team Member 2">
+                        <h3 class="mt-6 text-base font-semibold leading-7 tracking-tight text-cr-dark">Team Member Name</h3>
+                        <p class="text-sm leading-6 text-cr-slate">Role (e.g., UX/UI Designer)</p>
+                    </div>
+                    <div class="text-center">
+                        <img class="mx-auto h-32 w-32 rounded-full bg-cr-light-gray" src="https://placehold.co/256x256/E0E7FF/4338CA?text=TM" alt="Team Member 3">
+                        <h3 class="mt-6 text-base font-semibold leading-7 tracking-tight text-cr-dark">Team Member Name</h3>
+                        <p class="text-sm leading-6 text-cr-slate">Role (e.g., Lead Researcher)</p>
+                    </div>
+                    <div class="text-center">
+                        <img class="mx-auto h-32 w-32 rounded-full bg-cr-light-gray" src="https://placehold.co/256x256/E0E7FF/4338CA?text=TM" alt="Team Member 4">
+                        <h3 class="mt-6 text-base font-semibold leading-7 tracking-tight text-cr-dark">Team Member Name</h3>
+                        <p class="text-sm leading-6 text-cr-slate">Role (e.g., Software Engineer)</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-cr-dark text-white">
+        <div class="container mx-auto py-12 px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <p class="text-base text-gray-400">&copy; Made by Consumer Reports Capstone Team 2025</p>
+                <p class="mt-2 text-sm text-gray-500">A Capstone Project for the MHCI Program</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,9 @@
+/* Sets the default font for the entire site */
+body {
+    font-family: 'Inter', sans-serif;
+}
+
+/* Custom background color class for the hero section */
+.bg-hero {
+    background-color: #F0FFF4; /* Light green */
+}
