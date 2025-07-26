@@ -31,10 +31,21 @@
             padding-top: 5rem;
             padding-bottom: 5rem;
         }
+
+        /* --- NEW: Animation for the sticky titles --- */
         .scroll-section .sticky-title {
             position: sticky;
-            top: 8rem;
+            top: 8rem; /* Stays sticky below the header */
+            opacity: 0;
+            transform: translateX(-30px);
+            transition: opacity 0.5s ease-out, transform 0.5s ease-out;
         }
+        .scroll-section .sticky-title.is-visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* --- UPDATED: More dynamic card animation --- */
         .content-card {
             background-color: white;
             padding: 2rem;
@@ -42,12 +53,27 @@
             border: 1px solid #e5e7eb;
             margin-bottom: 2rem;
             opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+            transform: translateY(40px) scale(0.98); /* Start slightly lower and smaller */
+            transition: opacity 0.5s ease-out, transform 0.5s ease-out;
         }
         .content-card.is-visible {
             opacity: 1;
-            transform: translateY(0);
+            transform: translateY(0) scale(1); /* End at normal size and position */
+        }
+
+        /* --- NEW: Stagger the animation for the second card in a section --- */
+        .right-content .content-card:nth-of-type(2) {
+            transition-delay: 0.15s; /* Apply a small delay */
+        }
+        
+        /* --- NEW: Animate the icons inside the cards --- */
+        .content-card .fas {
+            transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1); /* "bouncy" effect */
+            transform: scale(0) rotate(-45deg);
+        }
+        .content-card.is-visible .fas {
+            transform: scale(1) rotate(0);
+            transition-delay: 0.3s; /* Delay icon animation until after card appears */
         }
     </style>
 </head>
@@ -81,7 +107,7 @@
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
             <section class="scroll-section" id="research-section">
                 <div class="sticky-title">
-                    <h2 class="text-3xl font-bold text-cr-dark">Phase 1:<br>Research & Discovery</h2>
+                    <h2 class="text-3xl font-bold text-cr-dark"><br>Research & Discovery</h2>
                     <p class="mt-4 text-cr-slate">We began with a broad challenge from the CR Innovation Lab: find the best problem to solve using agentic AI within CR’s ecosystem. This led us to conduct 27 consumer interviews to uncover the core needs of modern shoppers.</p>
                 </div>
                 <div class="right-content">
@@ -104,7 +130,7 @@
 
             <section class="scroll-section" id="problem-section">
                 <div class="sticky-title">
-                    <h2 class="text-3xl font-bold text-cr-dark">Phase 2:<br>Defining the Core Problem</h2>
+                    <h2 class="text-3xl font-bold text-cr-dark"><br>Defining the Core Problem</h2>
                     <p class="mt-4 text-cr-slate">Our research pointed to a clear opportunity: evolving the "Best Time to Buy" feature from a general guide into a proactive, personalized tool that solves the "anxious waiting game."</p>
                 </div>
                 <div class="right-content">
@@ -123,7 +149,7 @@
             
             <section class="scroll-section" id="design-section">
                 <div class="sticky-title">
-                    <h2 class="text-3xl font-bold text-cr-dark">Phase 3:<br>Designing for Trust</h2>
+                    <h2 class="text-3xl font-bold text-cr-dark"><br>Designing for Trust</h2>
                     <p class="mt-4 text-cr-slate">Automating a purchase is a big step. We knew our design had to be built on a foundation of trust, giving users full control and transparency at every step.</p>
                 </div>
                 <div class="right-content">
@@ -142,7 +168,7 @@
 
              <section class="scroll-section" id="value-section">
                 <div class="sticky-title">
-                    <h2 class="text-3xl font-bold text-cr-dark">Phase 4:<br>Assessing Business Value</h2>
+                    <h2 class="text-3xl font-bold text-cr-dark"><br>Assessing Business Value</h2>
                     <p class="mt-4 text-cr-slate">Beyond improving the member experience, our solution presents a significant opportunity to advance CR's mission and business.</p>
                 </div>
                 <div class="right-content">
@@ -175,19 +201,44 @@
     </footer>
 
     <script>
+        // --- UPDATED JAVASCRIPT ---
         document.addEventListener('DOMContentLoaded', () => {
-            const cards = document.querySelectorAll('.content-card');
-            const observer = new IntersectionObserver((entries) => {
+            // Observer for the content cards and their icons
+            const cardObserver = new IntersectionObserver((entries, observer) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('is-visible');
+                        // Optional: unobserve after the animation runs
+                        // observer.unobserve(entry.target); 
                     }
                 });
             }, {
-                threshold: 0.2
+                threshold: 0.1 // Trigger when 10% of the card is visible
             });
-            cards.forEach(card => {
-                observer.observe(card);
+
+            document.querySelectorAll('.content-card').forEach(card => {
+                cardObserver.observe(card);
+            });
+
+            // A separate observer for the sections to animate their sticky titles
+            const titleObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    // Find the sticky title inside the section that is being observed
+                    const stickyTitle = entry.target.querySelector('.sticky-title');
+                    if (entry.isIntersecting) {
+                        stickyTitle.classList.add('is-visible');
+                    }
+                    // We don't remove the class, so titles only animate in once
+                });
+            }, {
+                // This triggers when the section's top edge is 128px (8rem) from the viewport top.
+                // It ensures the title animates just as it becomes "sticky".
+                rootMargin: "-128px 0px -40% 0px", 
+                threshold: 0
+            });
+
+            document.querySelectorAll('.scroll-section').forEach(section => {
+                titleObserver.observe(section);
             });
         });
     </script>
