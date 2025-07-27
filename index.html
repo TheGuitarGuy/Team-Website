@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Capstone Project - Home</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
-    <script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Capstone Project - Home</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"/>
+  <script>
     tailwind.config = {
       theme: {
         extend: {
@@ -17,94 +17,118 @@
             'cr-dark': '#111827',
             'cr-slate': '#6B7280',
             'cr-light-gray': '#F3F4F6',
+          },
+          maxHeight: {
+            '65vh': '65vh',
           }
         }
       }
     }
-    </script>
-    <style>
-        body { font-family: 'Inter', sans-serif; }
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .fade-in-up {
-            animation: fadeInUp 1s ease-out forwards;
-            opacity: 0;
-        }
-        .hero-image {
-            border-radius: 1.5rem;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.2);
-            border: 1px solid rgba(0,0,0,0.05);
-        }
-    </style>
+  </script>
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .fade-in-up {
+      animation: fadeInUp 1s ease-out forwards;
+      opacity: 0;
+    }
+    .hero-image {
+      border-radius: 1.5rem;
+    }
+    .text-h1-fluid {
+      font-size: clamp(1.75rem, 4vh, 3.75rem);
+    }
+    .text-p-fluid {
+      font-size: clamp(0.875rem, 2vh, 1.125rem);
+    }
+  </style>
 </head>
-<body class="bg-white text-cr-dark flex flex-col min-h-screen">
+<body class="bg-white text-cr-dark min-h-screen flex flex-col">
 
-    <header class="border-b border-gray-200 sticky top-0 bg-white/80 backdrop-blur-lg z-20">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-16">
-                <div class="flex-shrink-0">
-                    <a href="index.html" class="text-2xl font-bold text-cr-dark">Best Time to Buy <span class="text-cr-green">2.0</span></a>
-                </div>
-                <nav class="hidden md:flex md:space-x-8">
-                    <a href="solution.html" class="text-gray-500 hover:text-cr-green">Our Solution</a>
-                    <a href="team.html" class="text-gray-500 hover:text-cr-green">The Team</a>
-                    <a href="process.html" class="text-gray-500 hover:text-cr-green">Our Process</a>
-                </nav>
-            </div>
+  <!-- Header with consistent mobile nav -->
+  <header class="border-b border-gray-200 sticky top-0 bg-white/90 backdrop-blur-lg z-30">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <a href="index.html" class="text-2xl font-bold text-cr-dark">Best Time to Buy <span class="text-cr-green">2.0</span></a>
+        <nav class="hidden md:flex space-x-8">
+          <a href="solution.html" class="text-gray-500 hover:text-cr-green">Our Solution</a>
+          <a href="team.html" class="text-gray-500 hover:text-cr-green">The Team</a>
+          <a href="process.html" class="text-gray-500 hover:text-cr-green">Our Process</a>
+        </nav>
+        <div class="md:hidden">
+          <button id="menu-btn" class="text-cr-dark focus:outline-none">
+            <i class="fas fa-bars fa-lg"></i>
+          </button>
         </div>
-    </header>
+      </div>
+    </div>
+    <div id="mobile-menu" class="hidden md:hidden">
+      <a href="solution.html" class="block text-center py-4 text-gray-500 hover:bg-cr-green hover:text-white transition-colors duration-300">Our Solution</a>
+      <a href="team.html" class="block text-center py-4 text-gray-500 hover:bg-cr-green hover:text-white transition-colors duration-300">The Team</a>
+      <a href="process.html" class="block text-center py-4 text-gray-500 hover:bg-cr-green hover:text-white transition-colors duration-300">Our Process</a>
+    </div>
+  </header>
 
-    <main class="flex-grow">
-        <section class="relative">
-            <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center pt-24 pb-32">
-                <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-cr-dark fade-in-up">
-                    Introducing Best Time to Buy<br class="hidden md:block"><span class="text-cr-green">2.0</span>.
-                </h1>
-                <p class="mt-8 text-lg sm:text-xl text-cr-slate max-w-3xl mx-auto fade-in-up" style="animation-delay: 0.2s;">
-                    The culmination of our six-month capstone with Consumer Reports. We're reimagining a key member benefit to be more than just data—we're building an agent of trust that saves members time, money, and mental effort.
-                </p>
-                <div class="mt-12 flex justify-center gap-4 fade-in-up" style="animation-delay: 0.4s;">
-                    <a href="solution.html" class="inline-block bg-cr-green text-white font-semibold rounded-full px-8 py-4 text-lg hover:bg-cr-green-dark transition-transform hover:scale-105">
-                        Explore The Solution
-                    </a>
-                     <a href="problem.html" class="inline-block bg-cr-light-gray text-cr-dark font-semibold rounded-full px-8 py-4 text-lg hover:bg-gray-200 transition-transform hover:scale-105">
-                        Understand The Process
-                    </a>
-                </div>
-            </div>
-             <div class="container mx-auto px-4 sm:px-6 lg:px-8 -mt-16 fade-in-up" style="animation-delay: 0.6s;">
-                <img src="assets/CR Prototype.png" alt="Best Time to Buy 2.0 app interface" class="hero-image mx-auto">
-            </div>
-        </section>
+  <!-- Main Content -->
+  <main class="flex-grow flex items-center justify-center">
+    <section class="flex flex-col text-center p-4 gap-4 w-full max-w-7xl items-center justify-center pb-20">
+      <h1 class="text-h1-fluid font-extrabold tracking-tight text-cr-dark fade-in-up">
+        Introducing Best Time to Buy <span class="text-cr-green">2.0</span>
+      </h1>
 
-        <section class="py-24 sm:py-32">
-            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center max-w-3xl mx-auto">
-                     <h2 class="text-3xl font-bold tracking-tight text-cr-dark sm:text-4xl">Built on a Legacy of Trust</h2>
-                    <p class="mt-4 text-lg text-cr-slate">
-                        Our work with Consumer Reports, an independent nonprofit with a 90-year history, has been fundamentally focused on one thing: supporting consumers. We asked ourselves how we could meaningfully advance their mission in the age of AI.
-                    </p>
-                </div>
-                <div class="mt-16">
-                     <blockquote class="text-center max-w-4xl mx-auto">
-                        <p class="text-2xl sm:text-3xl font-medium text-cr-dark italic leading-tight">"CR isn’t just a machine that turns out test results—it's a smart agent that draws on deep expertise, who saves us time and money, making sure that the market is treating us fairly.”</p>
-                        <footer class="mt-6 text-cr-slate">- Consumer Reports 2027 Strategic Plan</footer>
-                    </blockquote>
-                </div>
-            </div>
-        </section>
-    </main>
+      <div class="w-full max-w-5xl fade-in-up" style="animation-delay: 0.6s;">
+        <img src="assets/CR Prototype.png" alt="Best Time to Buy 2.0 app interface" class="hero-image object-contain mx-auto" style="max-height: 65vh;">
+      </div>
 
-    <footer class="bg-cr-dark text-white">
-        <div class="container mx-auto py-12 px-4 sm:px-6 lg:px-8">
-            <div class="text-center">
-                <p class="text-base text-gray-400">© Made by Consumer Reports Capstone Team 2025</p>
-                <p class="mt-2 text-sm text-gray-500">A Capstone Project for the MHCI Program</p>
-            </div>
-        </div>
-    </footer>
+      <p class="text-p-fluid text-cr-slate max-w-3xl mx-auto fade-in-up" style="animation-delay: 0.2s;">
+        Helping consumers make informed purchasing decisions with confidence and ease.
+      </p>
 
+      <div class="flex flex-wrap justify-center gap-4 fade-in-up" style="animation-delay: 0.4s;">
+        <a href="solution.html" class="inline-block bg-cr-green text-white font-semibold rounded-full px-8 py-3 text-base sm:text-lg hover:bg-cr-green-dark transition-transform hover:scale-105">
+          Explore The Solution
+        </a>
+        <a href="problem.html" class="inline-block bg-cr-light-gray text-cr-dark font-semibold rounded-full px-8 py-3 text-base sm:text-lg hover:bg-gray-200 transition-transform hover:scale-105">
+          Understand The Process
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-cr-dark text-white">
+    <div class="container mx-auto py-6 px-4 sm:px-6 lg:px-8">
+      <div class="text-center">
+        <p class="text-base text-gray-400">© Made by Consumer Reports Capstone Team 2025</p>
+        <p class="mt-2 text-sm text-gray-500">A Capstone Project for the MHCI Program</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Script for Mobile Menu -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const menuBtn = document.getElementById('menu-btn');
+      const mobileMenu = document.getElementById('mobile-menu');
+      if (menuBtn && mobileMenu) {
+        menuBtn.addEventListener('click', () => {
+          mobileMenu.classList.toggle('hidden');
+          const icon = menuBtn.querySelector('i');
+          if (mobileMenu.classList.contains('hidden')) {
+            icon.classList.remove('fa-times');
+            icon.classList.add('fa-bars');
+          } else {
+            icon.classList.remove('fa-bars');
+            icon.classList.add('fa-times');
+          }
+        });
+      }
+    });
+  </script>
 </body>
 </html>

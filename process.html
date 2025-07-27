@@ -1,246 +1,650 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Our Process - Capstone Project</title>
+    <title>Our Process – Capstone Project</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            'cr-green': '#00B96F',
-            'cr-dark': '#111827',
-            'cr-slate': '#6B7280',
-            'cr-light-gray': '#F3F4F6',
-          }
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'cr-green': '#00B96F',
+                        'cr-green-dark': '#00875A',
+                        'cr-dark': '#111827',
+                        'cr-slate': '#6B7280',
+                        'cr-light-gray': '#F3F4F6',
+                    },
+                    maxHeight: {
+                        '65vh': '65vh',
+                    }
+                }
+            }
         }
-      }
-    }
     </script>
     <style>
-        body { font-family: 'Inter', sans-serif; }
-        .scroll-section {
-            display: grid;
-            grid-template-columns: 1fr 1.5fr;
-            gap: 4rem;
-            align-items: flex-start;
-            padding-top: 5rem;
-            padding-bottom: 5rem;
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth
         }
 
-        /* --- NEW: Animation for the sticky titles --- */
-        .scroll-section .sticky-title {
-            position: sticky;
-            top: 8rem; /* Stays sticky below the header */
+        main {
+            scroll-snap-type: y mandatory
+        }
+
+        section {
+            scroll-snap-align: start
+        }
+
+        /* Base styles for animated elements */
+        .animated-item {
             opacity: 0;
-            transform: translateX(-30px);
-            transition: opacity 0.5s ease-out, transform 0.5s ease-out;
-        }
-        .scroll-section .sticky-title.is-visible {
-            opacity: 1;
-            transform: translateX(0);
+            transform: translateY(40px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
         }
 
-        /* --- UPDATED: More dynamic card animation --- */
-        .content-card {
-            background-color: white;
-            padding: 2rem;
-            border-radius: 1rem;
-            border: 1px solid #e5e7eb;
-            margin-bottom: 2rem;
-            opacity: 0;
-            transform: translateY(40px) scale(0.98); /* Start slightly lower and smaller */
-            transition: opacity 0.5s ease-out, transform 0.5s ease-out;
-        }
-        .content-card.is-visible {
+        /* When the parent section is visible, animate the items */
+        .section.is-visible .animated-item {
             opacity: 1;
-            transform: translateY(0) scale(1); /* End at normal size and position */
+            transform: translateY(0);
         }
 
-        /* --- NEW: Stagger the animation for the second card in a section --- */
-        .right-content .content-card:nth-of-type(2) {
-            transition-delay: 0.15s; /* Apply a small delay */
+        /* Staggered delay for child elements */
+        .section.is-visible .animated-item:nth-child(1) {
+            transition-delay: 0.1s;
         }
-        
-        /* --- NEW: Animate the icons inside the cards --- */
-        .content-card .fas {
-            transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1); /* "bouncy" effect */
-            transform: scale(0) rotate(-45deg);
+
+        .section.is-visible .animated-item:nth-child(2) {
+            transition-delay: 0.2s;
         }
-        .content-card.is-visible .fas {
-            transform: scale(1) rotate(0);
-            transition-delay: 0.3s; /* Delay icon animation until after card appears */
+
+        .section.is-visible .animated-item:nth-child(3) {
+            transition-delay: 0.3s;
+        }
+
+        .section.is-visible .animated-item:nth-child(4) {
+            transition-delay: 0.4s;
+        }
+
+        .section.is-visible .animated-item:nth-child(5) {
+            transition-delay: 0.5s;
+        }
+
+
+        /* Icon pop-in animation */
+        @keyframes pop-in {
+            0% {
+                transform: scale(0);
+            }
+
+            80% {
+                transform: scale(1.1);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .pop-in-icon {
+            animation: pop-in 0.5s ease-out forwards;
+            animation-delay: 0.4s;
+            transform: scale(0);
         }
     </style>
 </head>
-<body class="bg-white text-cr-dark">
 
-    <header class="border-b border-gray-200 sticky top-0 bg-white/80 backdrop-blur-lg z-20">
+<body class="bg-white text-cr-dark">
+    <header class="border-b border-gray-200 sticky top-0 bg-white/90 backdrop-blur-lg z-30">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
-                <div class="flex-shrink-0">
-                    <a href="index.html" class="text-2xl font-bold text-cr-dark">Best Time to Buy <span class="text-cr-green">2.0</span></a>
-                </div>
-                <nav class="hidden md:flex md:space-x-8">
+                <a href="index.html" class="text-2xl font-bold text-cr-dark">Best Time to Buy <span class="text-cr-green">2.0</span></a>
+                <nav class="hidden md:flex space-x-8">
                     <a href="solution.html" class="text-gray-500 hover:text-cr-green">Our Solution</a>
                     <a href="team.html" class="text-gray-500 hover:text-cr-green">The Team</a>
                     <a href="process.html" class="text-cr-green font-semibold">Our Process</a>
                 </nav>
+                <div class="md:hidden">
+                    <button id="menu-btn" class="text-cr-dark focus:outline-none">
+                        <i class="fas fa-bars fa-lg"></i>
+                    </button>
+                </div>
             </div>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden">
+            <a href="solution.html" class="block text-center py-4 text-gray-500 hover:bg-cr-green hover:text-white transition-colors duration-300">Our Solution</a>
+            <a href="team.html" class="block text-center py-4 text-gray-500 hover:bg-cr-green hover:text-white transition-colors duration-300">The Team</a>
+            <a href="process.html" class="block text-center py-4 text-cr-green font-semibold hover:bg-cr-green hover:text-white transition-colors duration-300">Our Process</a>
         </div>
     </header>
 
-    <main>
-        <section class="text-center py-24 bg-cr-light-gray">
-            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-                <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight text-cr-dark">Our Six-Month Journey</h1>
-                <p class="mt-4 max-w-2xl mx-auto text-lg text-cr-slate">
-                    We followed a rigorous, user-centered design process to transform an idea into a tangible, trustworthy, and valuable solution for millions of CR members.
-                </p>
+    <main class="h-screen overflow-y-scroll">
+
+        <section class="section flex flex-col items-center justify-center min-h-screen py-20 px-4 sm:px-8 text-center">
+            <h1 class="animated-item text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight mb-6">Agentic AI for the Consumer</h1>
+            <p class="animated-item max-w-4xl text-lg sm:text-xl text-cr-slate">Our story begins with a challenge from Consumer Reports, an organization with a ninety-year history of fighting for consumers. They asked our team to find the most valuable problem agentic AI could solve within their ecosystem.</p>
+        </section>
+
+        <section class="section flex flex-col items-center justify-center min-h-screen py-20 px-4 sm:px-8 text-center">
+            <h2 class="animated-item text-4xl sm:text-5xl font-bold mb-6">Our Journey Started on the Ground</h2>
+            <p class="animated-item max-w-5xl text-lg sm:text-xl text-cr-slate">To discover the right answer, we left the office. We conducted 12 preliminary in-store intercept interviews at retailers like Best Buy and Home Depot and 15 interviews with consumers from our networks.</p>
+            <img src="assets/home_depot.png" alt="Team member conducting research in a retail store" class="animated-item mt-10 rounded-lg shadow-lg w-auto max-h-[50vh] md:max-h-65vh transition-transform duration-300 hover:scale-105">
+        </section>
+
+        <section class="section flex flex-col items-center justify-center min-h-screen py-20 px-4 sm:px-8 text-center bg-cr-light-gray">
+            <div class="max-w-5xl w-full">
+                <div class="animated-item text-cr-green mb-4"><i class="fas fa-box-open fa-3x"></i></div>
+                <p class="animated-item text-lg font-semibold text-cr-green uppercase tracking-wider mb-2">Finding 1</p>
+                <h3 class="animated-item text-3xl sm:text-4xl md:text-5xl font-bold mb-4">The Burden of Ownership</h3>
+                <p class="animated-item text-lg sm:text-xl text-cr-slate mb-8">When it comes to product upkeep, consumers are left to manage the complexity alone, making ownership feel like a burden rather than a benefit.</p>
+                <div class="grid md:grid-cols-3 gap-6 text-left">
+                    <div class="animated-item bg-white p-6 rounded-lg shadow-md">
+                        <blockquote class="text-md italic text-cr-dark">“We are on our 4th washing machine in around 10 years.”</blockquote>
+                        <footer class="mt-2 text-sm not-italic text-cr-slate">— Consumer from personal network</footer>
+                    </div>
+                    <div class="animated-item bg-white p-6 rounded-lg shadow-md">
+                        <blockquote class="text-md italic text-cr-dark">“It's planned obsolescence.”</blockquote>
+                        <footer class="mt-2 text-sm not-italic text-cr-slate">— Consumer from personal network</footer>
+                    </div>
+                    <div class="animated-item bg-white p-6 rounded-lg shadow-md">
+                        <blockquote class="text-md italic text-cr-dark">“There’s just so much paperwork... I’ll probably just throw it in the garbage.”</blockquote>
+                        <footer class="mt-2 text-sm not-italic text-cr-slate">— Consumer from Home Depot</footer>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <section class="scroll-section" id="research-section">
-                <div class="sticky-title">
-                    <h2 class="text-3xl font-bold text-cr-dark"><br>Research & Discovery</h2>
-                    <p class="mt-4 text-cr-slate">We began with a broad challenge from the CR Innovation Lab: find the best problem to solve using agentic AI within CR’s ecosystem. This led us to conduct 27 consumer interviews to uncover the core needs of modern shoppers.</p>
-                </div>
-                <div class="right-content">
-                    <div class="content-card">
-                        <i class="fas fa-info-circle text-2xl text-cr-green mb-4"></i>
-                        <h3 class="font-semibold text-xl mb-2">Insight: Information Overload, Trust Deficit</h3>
-                        <p class="text-cr-slate">Consumers are inundated with polarized reviews and biased information. This flood of data leaves them struggling to find a credible source to guide their decisions.</p>
-                        <blockquote class="mt-4 pl-4 border-l-4 border-cr-green bg-cr-light-gray p-4 rounded-r-lg">
-                            <p class="text-cr-slate italic">“Online reviews are frustrating because they are polarizing and you can’t tell who is being honest and who is not.”</p>
-                            <footer class="mt-2 text-sm text-cr-slate">- Research Participant</footer>
-                        </blockquote>
+        <section class="section flex flex-col items-center justify-center min-h-screen py-20 px-4 sm:px-8 text-center bg-cr-light-gray">
+            <div class="max-w-5xl w-full">
+                <div class="animated-item text-cr-green mb-4"><i class="fas fa-people-arrows fa-3x"></i></div>
+                <p class="animated-item text-lg font-semibold text-cr-green uppercase tracking-wider mb-2">Finding 2</p>
+                <h3 class="animated-item text-3xl sm:text-4xl md:text-5xl font-bold mb-4">Decision-Making is Undersupported</h3>
+                <p class="animated-item text-lg sm:text-xl text-cr-slate mb-8">Large purchases demand emotionally charged trade-offs, yet consumers often lack credible, tailored guidance.</p>
+                <div class="grid md:grid-cols-3 gap-6 text-left">
+                    <div class="animated-item bg-white p-6 rounded-lg shadow-md">
+                        <blockquote class="text-md italic text-cr-dark">“My wife really wanted to make it a home... we're going to make it our own.”</blockquote>
+                        <footer class="mt-2 text-sm not-italic text-cr-slate">— Consumer from personal network</footer>
                     </div>
-                    <div class="content-card">
-                        <i class="fas fa-balance-scale-right text-2xl text-cr-green mb-4"></i>
-                        <h3 class="font-semibold text-xl mb-2">Insight: Unsupported Emotional Decisions</h3>
-                        <p class="text-cr-slate">Large purchases are emotionally charged, demanding complex trade-offs. Yet, consumers are left to navigate this journey alone, lacking the personalized guidance needed to feel confident.</p>
+                    <div class="animated-item bg-white p-6 rounded-lg shadow-md">
+                        <blockquote class="text-md italic text-cr-dark">“I’m tired of being asked "What do you think?" and facing indecision from customers.”</blockquote>
+                        <footer class="mt-2 text-sm not-italic text-cr-slate">— Home Depot employee</footer>
+                    </div>
+                    <div class="animated-item bg-white p-6 rounded-lg shadow-md">
+                        <blockquote class="text-md italic text-cr-dark">“I don’t want to recommend specific products because I don’t want to be liable.”</blockquote>
+                        <footer class="mt-2 text-sm not-italic text-cr-slate">— Home Depot employee</footer>
                     </div>
                 </div>
-            </section>
+            </div>
+        </section>
 
-            <section class="scroll-section" id="problem-section">
-                <div class="sticky-title">
-                    <h2 class="text-3xl font-bold text-cr-dark"><br>Defining the Core Problem</h2>
-                    <p class="mt-4 text-cr-slate">Our research pointed to a clear opportunity: evolving the "Best Time to Buy" feature from a general guide into a proactive, personalized tool that solves the "anxious waiting game."</p>
-                </div>
-                <div class="right-content">
-                    <div class="content-card">
-                        <i class="fas fa-search-dollar text-2xl text-cr-green mb-4"></i>
-                        <h3 class="font-semibold text-xl mb-2">The Waiting Game is Broken</h3>
-                        <p class="text-cr-slate">For non-urgent purchases, consumers exist in a state of limbo. A pre-Prime Day poll showed <strong class="text-cr-dark">93% of participants</strong> were waiting to buy a specific item, hoping for a sale. The current process of tracking prices is manual, frustrating, and often forgotten.</p>
-                         <blockquote class="mt-4 pl-4 border-l-4 border-cr-green bg-cr-light-gray p-4 rounded-r-lg">
-                            <p class="text-cr-slate italic">“I continue looking and looking and looking, and I usually forget to keep looking. And then one day I remember, and it’s expensive again.”</p>
-                             <footer class="mt-2 text-sm text-cr-slate">- Research Participant</footer>
-                        </blockquote>
-                        <p class="mt-4 text-cr-slate">This revealed a need to help consumers not just decide, but to follow through.</p>
+        <section class="section flex flex-col items-center justify-center min-h-screen py-20 px-4 sm:px-8 text-center bg-cr-light-gray">
+            <div class="max-w-5xl w-full">
+                <div class="animated-item text-cr-green mb-4"><i class="fas fa-magnifying-glass-chart fa-3x"></i></div>
+                <p class="animated-item text-lg font-semibold text-cr-green uppercase tracking-wider mb-2">Finding 3</p>
+                <h3 class="animated-item text-3xl sm:text-4xl md:text-5xl font-bold mb-4">Information is Everywhere, But Trust is Scarce</h3>
+                <p class="animated-item text-lg sm:text-xl text-cr-slate mb-8">Consumers are inundated with sources but struggle to find information they can truly trust.</p>
+                <div class="grid md:grid-cols-3 gap-6 text-left">
+                    <div class="animated-item bg-white p-6 rounded-lg shadow-md">
+                        <blockquote class="text-md italic text-cr-dark">“I put a little poll on Facebook... most people weren't happy with GE.”</blockquote>
+                        <footer class="mt-2 text-sm not-italic text-cr-slate">— Consumer from personal network</footer>
+                    </div>
+                    <div class="animated-item bg-white p-6 rounded-lg shadow-md">
+                        <blockquote class="text-md italic text-cr-dark">“Online reviews are frustrating because they are polarizing.”</blockquote>
+                        <footer class="mt-2 text-sm not-italic text-cr-slate">— Home Depot employee</footer>
+                    </div>
+                    <div class="animated-item bg-white p-6 rounded-lg shadow-md">
+                        <blockquote class="text-md italic text-cr-dark">“I went to YouTube, Reddit, Best Buy, and Amazon to find out more.”</blockquote>
+                        <footer class="mt-2 text-sm not-italic text-cr-slate">— Consumer at Best Buy</footer>
                     </div>
                 </div>
-            </section>
-            
-            <section class="scroll-section" id="design-section">
-                <div class="sticky-title">
-                    <h2 class="text-3xl font-bold text-cr-dark"><br>Designing for Trust</h2>
-                    <p class="mt-4 text-cr-slate">Automating a purchase is a big step. We knew our design had to be built on a foundation of trust, giving users full control and transparency at every step.</p>
-                </div>
-                <div class="right-content">
-                    <div class="content-card">
-                        <i class="fas fa-toggle-on text-2xl text-cr-green mb-4"></i>
-                        <h3 class="font-semibold text-xl mb-2">Control Through Optionality</h3>
-                        <p class="text-cr-slate">In our A/B tests, users expressed discomfort with automatic purchases. In response, we made it a core principle to give users a choice: buy automatically, or get a notification to confirm. This simple choice puts the user firmly in control.</p>
-                    </div>
-                    <div class="content-card">
-                        <i class="fas fa-hands-helping text-2xl text-cr-green mb-4"></i>
-                        <h3 class="font-semibold text-xl mb-2">Reassurance Through Guidance</h3>
-                        <p class="text-cr-slate">When testing a fully customizable screen versus one with presets, nearly every participant chose the preset version, calling it "faster, clearer, and more trustworthy." Our final design provides smart, pre-calculated targets to reassure users, while still allowing for full customization.</p>
-                    </div>
-                </div>
-            </section>
+            </div>
+        </section>
 
-             <section class="scroll-section" id="value-section">
-                <div class="sticky-title">
-                    <h2 class="text-3xl font-bold text-cr-dark"><br>Assessing Business Value</h2>
-                    <p class="mt-4 text-cr-slate">Beyond improving the member experience, our solution presents a significant opportunity to advance CR's mission and business.</p>
-                </div>
-                <div class="right-content">
-                    <div class="content-card">
-                        <i class="fas fa-users-cog text-2xl text-cr-green mb-4"></i>
-                        <h3 class="font-semibold text-xl mb-2">Targeting Key Demographics</h3>
-                        <p class="text-cr-slate">We predict the innovators and early adopters will be Millennials and Gen X. Millennials are "power users of AI" (24% daily usage), while Gen X accounts for over <strong class="text-cr-dark">53% of consumer spending</strong> and makes up a significant portion of CR's existing base.</p>
+        <section class="section flex flex-col items-center justify-center min-h-screen py-20 px-4 sm:px-8 text-center bg-cr-light-gray">
+            <div class="max-w-5xl w-full">
+                <div class="animated-item text-cr-green mb-4"><i class="fas fa-handshake-angle fa-3x"></i></div>
+                <p class="animated-item text-lg font-semibold text-cr-green uppercase tracking-wider mb-2">Finding 4</p>
+                <h3 class="animated-item text-3xl sm:text-4xl md:text-5xl font-bold mb-4">Convenience Wins, But Only If It Feels Human</h3>
+                <p class="animated-item text-lg sm:text-xl text-cr-slate mb-8">People crave seamless experiences, but only when grounded in a layer of human reassurance and trust.</p>
+                <div class="grid md:grid-cols-3 gap-6 text-left">
+                    <div class="animated-item bg-white p-6 rounded-lg shadow-md">
+                        <blockquote class="text-md italic text-cr-dark">“We... prefer to go to the local, well-known appliance store because there is a credibility factor.”</blockquote>
+                        <footer class="mt-2 text-sm not-italic text-cr-slate">— Consumer from personal network</footer>
                     </div>
-                    <div class="content-card">
-                        <i class="fas fa-dollar-sign text-2xl text-cr-green mb-4"></i>
-                        <h3 class="font-semibold text-xl mb-2">Increasing Affiliate Revenue</h3>
-                        <p class="text-cr-slate">Many "want" purchases are researched on CR, but the final click happens on a retailer's site, losing the affiliate commission. By automating these purchases, we can capture this foregone revenue.</p>
-                         <ul class="mt-4 space-y-2">
-                            <li class="flex items-start"><span class="font-bold text-cr-green mr-2 mt-1">&#10148;</span>A <strong class="text-cr-dark mx-1">5% increase</strong> in affiliate usage could generate an additional <strong class="text-cr-dark mx-1">$750,000</strong> in revenue.</li>
-                            <li class="flex items-start"><span class="font-bold text-cr-green mr-2 mt-1">&#10148;</span>A <strong class="text-cr-dark mx-1">10% increase</strong> could generate an additional <strong class="text-cr-dark mx-1">$1.5M</strong> in annual revenue.</li>
+                    <div class="animated-item bg-white p-6 rounded-lg shadow-md">
+                        <blockquote class="text-md italic text-cr-dark">“They rely on sales associates to facilitate the final purchase via text.”</blockquote>
+                        <footer class="mt-2 text-sm not-italic text-cr-slate">— Consumer from personal network</footer>
+                    </div>
+                    <div class="animated-item bg-white p-6 rounded-lg shadow-md">
+                        <blockquote class="text-md italic text-cr-dark">“If we can use local we like to support small local businesses.”</blockquote>
+                        <footer class="mt-2 text-sm not-italic text-cr-slate">— Consumer from personal network</footer>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section flex flex-col items-center justify-center min-h-screen py-20 px-4 sm:px-8 text-center bg-cr-light-gray">
+            <div class="max-w-5xl w-full">
+                <div class="animated-item text-cr-green mb-4"><i class="fas fa-heart-crack fa-3x"></i></div>
+                <p class="animated-item text-lg font-semibold text-cr-green uppercase tracking-wider mb-2">Finding 5</p>
+                <h3 class="animated-item text-3xl sm:text-4xl md:text-5xl font-bold mb-4">Digital Tools Fail to Meet Emotional Needs</h3>
+                <p class="animated-item text-lg sm:text-xl text-cr-slate mb-8">Current tools lack the emotional intelligence and trust to fully support complex, high-stakes purchases.</p>
+                <div class="grid md:grid-cols-3 gap-6 text-left">
+                    <div class="animated-item bg-white p-6 rounded-lg shadow-md">
+                        <blockquote class="text-md italic text-cr-dark">“When frustrated looking online they just end up saying ‘let’s just go to the store.’”</blockquote>
+                        <footer class="mt-2 text-sm not-italic text-cr-slate">— Consumer from personal network</footer>
+                    </div>
+                    <div class="animated-item bg-white p-6 rounded-lg shadow-md">
+                        <blockquote class="text-md italic text-cr-dark">“I won’t purchase a sofa online without seeing it in person.”</blockquote>
+                        <footer class="mt-2 text-sm not-italic text-cr-slate">— Consumer from personal network</footer>
+                    </div>
+                    <div class="animated-item bg-white p-6 rounded-lg shadow-md">
+                        <blockquote class="text-md italic text-cr-dark">“Develop a relationship with your local bike shop... don’t get it online.”</blockquote>
+                        <footer class="mt-2 text-sm not-italic text-cr-slate">— Consumer from personal network</footer>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section flex flex-col items-center justify-center min-h-screen py-20 px-4 sm:px-8 text-center bg-cr-light-gray">
+            <div class="max-w-5xl w-full">
+                <div class="animated-item text-cr-green mb-4"><i class="fas fa-robot fa-3x"></i></div>
+                <p class="animated-item text-lg font-semibold text-cr-green uppercase tracking-wider mb-2">Finding 6</p>
+                <h3 class="animated-item text-3xl sm:text-4xl md:text-5xl font-bold mb-4">AI is Underutilized in Personal Life</h3>
+                <p class="animated-item text-lg sm:text-xl text-cr-slate mb-8">AI is seen as productive for work, but lacks the trust and intuitive integration for high-friction personal decisions.</p>
+                <div class="grid md:grid-cols-3 gap-6 text-left">
+                    <div class="animated-item bg-white p-6 rounded-lg shadow-md">
+                        <blockquote class="text-md italic text-cr-dark">“I don’t see any reason to use AI beyond work.”</blockquote>
+                        <footer class="mt-2 text-sm not-italic text-cr-slate">— Consumer from personal network</footer>
+                    </div>
+                    <div class="animated-item bg-white p-6 rounded-lg shadow-md">
+                        <blockquote class="text-md italic text-cr-dark">“I think it will help with automation... haven’t really tried to make it useful.”</blockquote>
+                        <footer class="mt-2 text-sm not-italic text-cr-slate">— Consumer from personal network</footer>
+                    </div>
+                    <div class="animated-item bg-white p-6 rounded-lg shadow-md">
+                        <blockquote class="text-md italic text-cr-dark">“When all this stuff is happening... I kind of want to stay clueless to it all.”</blockquote>
+                        <footer class="mt-2 text-sm not-italic text-cr-slate">— Consumer from personal network</footer>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section flex flex-col items-center justify-center min-h-screen py-20 px-4 sm:px-8 text-center bg-white">
+            <div class="max-w-5xl w-full">
+                <div class="animated-item text-cr-green mb-4"><i class="fas fa-hat-wizard fa-3x"></i></div>
+                <h2 class="animated-item text-3xl sm:text-4xl md:text-5xl font-bold mb-4">Testing Our Agent with Real People</h2>
+                <p class="animated-item text-lg sm:text-xl text-cr-slate">Our early findings pointed to a powerful idea: an AI agent that buys things for you. But would anyone trust it? To find out, we ran a "Wizard of Oz" test. In 45-minute sessions, 11 participants interacted via text with what they thought was an AI. In reality, it was one of us, acting as the agent to discover the moments that build—or break—trust.</p>
+                <div class="animated-item mt-10 bg-cr-light-gray rounded-lg h-64 flex items-center justify-center">
+                    <i class="fas fa-mobile-screen-button text-6xl text-cr-slate"></i>
+                </div>
+            </div>
+        </section>
+
+        <section class="section flex flex-col items-center justify-center min-h-screen py-20 px-4 sm:px-8 text-center bg-cr-light-gray">
+            <div class="max-w-6xl w-full">
+                <div class="animated-item text-cr-green mb-4"><i class="fas fa-brain fa-3x"></i></div>
+                <h3 class="animated-item text-3xl sm:text-4xl md:text-5xl font-bold mb-4">Insight 1: Offload the Mental Load</h3>
+                <p class="animated-item text-lg sm:text-xl text-cr-slate mb-8">People don't just want to save money; they want to save the mental energy it takes to track prices.</p>
+                <div class="grid md:grid-cols-2 gap-8 text-left items-center">
+                    <div class="animated-item bg-white p-8 rounded-lg shadow-md">
+                        <blockquote class="text-lg italic text-cr-dark leading-relaxed">"I want to get the best deal... but I often forget to check and end up missing out on potential discounts. I wish I had someone to remember for me, check more frequently, and snag the deal... so I don’t miss out."</blockquote>
+                    </div>
+                    <div class="animated-item">
+                        <h4 class="text-2xl font-bold mb-4">Design Implications:</h4>
+                        <ul class="list-disc list-inside text-cr-slate space-y-3 text-lg">
+                            <li>Position the agent as something that "remembers to do what you're already meaning to do, and does it better."</li>
+                            <li>Proactively communicate to remind the user of the value it's providing ("I'm still watching that air fryer for you!").</li>
+                            <li>Clarify use cases for both "nice-to-have" and "need-to-upgrade" purchases.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section flex flex-col items-center justify-center min-h-screen py-20 px-4 sm:px-8 text-center bg-white">
+            <div class="max-w-6xl w-full">
+                <div class="animated-item text-cr-green mb-4"><i class="fas fa-chart-line fa-3x"></i></div>
+                <h3 class="animated-item text-3xl sm:text-4xl md:text-5xl font-bold mb-4">Insight 2: Reassure Me With Data</h3>
+                <p class="animated-item text-lg sm:text-xl text-cr-slate mb-8">Setting a "good" price is a huge point of anxiety. Users are afraid of setting the bar too high and missing out, or too low and losing savings.</p>
+                <div class="grid md:grid-cols-2 gap-8 text-left items-center">
+                    <div class="animated-item">
+                        <h4 class="text-2xl font-bold mb-4">Design Implications:</h4>
+                        <ul class="list-disc list-inside text-cr-slate space-y-3 text-lg">
+                            <li>Provide a few data-backed recommendations for price and timeline that users can customize.</li>
+                            <li>Visualize historical price data to build trust and inform manual settings.</li>
+                            <li>Notify users if a price target becomes unrealistic, prompting them to re-evaluate their criteria.</li>
+                        </ul>
+                    </div>
+                    <div class="animated-item bg-cr-light-gray p-8 rounded-lg shadow-md">
+                        <blockquote class="text-lg italic text-cr-dark leading-relaxed">"I want the agent to get the best deal it can, but I’m not sure how to set up my criteria to do that... I wish the agent would provide me with a data-backed recommendation... and keep me updated if its expectations change so that I feel reassured."</blockquote>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section flex flex-col items-center justify-center min-h-screen py-20 px-4 sm:px-8 text-center bg-cr-light-gray">
+            <div class="max-w-6xl w-full">
+                <div class="animated-item text-cr-green mb-4"><i class="fas fa-user-lock fa-3x"></i></div>
+                <h3 class="animated-item text-3xl sm:text-4xl md:text-5xl font-bold mb-4">Insight 3: Keep Me In Control</h3>
+                <p class="animated-item text-lg sm:text-xl text-cr-slate mb-8">The idea of an automated purchase is scary. Users need to feel like they hold the keys, even when they've delegated the task.</p>
+                <div class="grid md:grid-cols-2 gap-8 text-left items-center">
+                    <div class="animated-item bg-white p-8 rounded-lg shadow-md">
+                        <blockquote class="text-lg italic text-cr-dark leading-relaxed">"I want to feel in control of my finances, but I worry about forgetting that I’ve authorized a future purchase... I want transparency in prices, reminders that the agent is watching for me, the option to confirm before purchase, and the option to cancel."</blockquote>
+                    </div>
+                    <div class="animated-item">
+                        <h4 class="text-2xl font-bold mb-4">Design Implications:</h4>
+                        <ul class="list-disc list-inside text-cr-slate space-y-3 text-lg">
+                            <li>Default to requiring user confirmation before any purchase, with a clear opt-in for full automation.</li>
+                            <li>Make cancellation frictionless (e.g., text "CANCEL").</li>
+                            <li>Always show the "all-in" price, including taxes and shipping, before and after the purchase.</li>
                         </ul>
                     </div>
                 </div>
             </section>
-        </div>
+
+        <section class="section flex flex-col items-center justify-center min-h-screen py-20 px-4 sm:px-8 bg-white">
+            <div class="max-w-6xl w-full">
+                <div class="text-center mb-12">
+                    <div class="animated-item text-cr-green mb-4"><i class="fas fa-clipboard-list fa-3x"></i></div>
+                    <h2 class="animated-item text-3xl sm:text-4xl md:text-5xl font-bold">Consumers Need Support, but they are Skeptical of AI.</h2>
+                    <p class="animated-item max-w-4xl mx-auto text-lg sm:text-xl text-cr-slate mt-4">Our findings revealed a core tension: consumers crave effortless solutions but are deeply skeptical of ceding control. This meant our agent couldn't just be smart; it had to be a trusted partner.</p>
+                </div>
+                <div class="grid md:grid-cols-3 gap-8 text-left">
+                    <div class="animated-item" style="transition-delay: 0.4s;">
+                        <div class="flex items-center mb-3">
+                            <i class="fas fa-handshake-angle text-3xl text-cr-green mr-4"></i>
+                            <h3 class="text-2xl font-bold">Be an Effortless Partner</h3>
+                        </div>
+                        <p class="text-cr-slate">The agent must simplify complexity, from decision-making to long-term ownership, without adding new burdens.</p>
+                    </div>
+                    <div class="animated-item" style="transition-delay: 0.5s;">
+                        <div class="flex items-center mb-3">
+                            <i class="fas fa-shield-halved text-3xl text-cr-green mr-4"></i>
+                            <h3 class="text-2xl font-bold">Build on Trust</h3>
+                        </div>
+                        <p class="text-cr-slate">Every recommendation and action must be transparent, credible, and grounded in the user's best interest, not a black box.</p>
+                    </div>
+                    <div class="animated-item" style="transition-delay: 0.6s;">
+                        <div class="flex items-center mb-3">
+                            <i class="fas fa-user-check text-3xl text-cr-green mr-4"></i>
+                            <h3 class="text-2xl font-bold">Empower, Don't Replace</h3>
+                        </div>
+                        <p class="text-cr-slate">The agent must respect the user's emotional needs and final say, providing reassurance and control at every step.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section flex flex-col items-center justify-center min-h-screen py-20 px-4 sm:px-8 bg-cr-light-gray">
+            <div class="max-w-6xl w-full grid grid-cols-1 md:grid-cols-5 gap-8 md:gap-16 items-center">
+                <div class="md:col-span-3 text-left">
+                    <div class="animated-item text-cr-green mb-4"><i class="fas fa-clipboard-check fa-3x"></i></div>
+                    <h2 class="animated-item text-3xl sm:text-4xl md:text-5xl font-bold mb-4">Are People Willing to Wait?</h2>
+                    <p class="animated-item text-lg sm:text-xl text-cr-slate">
+                        To validate our qualitative findings, we surveyed a wider audience ahead of Amazon's Prime Day. The results were overwhelming: the vast majority of consumers are actively considering a purchase, just waiting for the right moment to act.
+                    </p>
+                </div>
+
+                <div class="md:col-span-2 animated-item" style="transition-delay: 0.4s;">
+                    <div class="bg-white p-8 sm:p-10 rounded-xl space-y-8 text-center shadow-lg">
+                        <div>
+                            <p class="text-6xl sm:text-7xl font-extrabold text-cr-green">93%</p>
+                            <p class="text-lg sm:text-xl text-cr-slate mt-2">Are waiting to buy something specific</p>
+                        </div>
+                        <hr class="border-gray-300/70">
+                        <div>
+                            <p class="text-6xl sm:text-7xl font-extrabold text-cr-green">40</p>
+                            <p class="text-lg sm:text-xl text-cr-slate mt-2">Total Responses</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section flex flex-col items-center justify-center min-h-screen py-20 px-4 sm:px-8 bg-cr-light-gray">
+            <div class="text-center max-w-5xl w-full">
+                <div class="animated-item text-cr-green mb-4"><i class="fas fa-cart-shopping fa-3x"></i></div>
+                <h2 class="animated-item text-3xl sm:text-4xl md:text-5xl font-bold mb-10">What's On The Wishlist?</h2>
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="animated-item bg-white p-6 rounded-lg shadow-md text-center">
+                        <i class="fas fa-tornado text-5xl text-cr-green mb-4"></i>
+                        <h4 class="text-2xl font-bold">Air Fryer</h4>
+                        <p class="text-cr-slate">The most frequently named "wait to buy" item across all demographics.</p>
+                    </div>
+                    <div class="animated-item bg-white p-6 rounded-lg shadow-md text-center">
+                        <i class="fas fa-mug-hot text-5xl text-cr-green mb-4"></i>
+                        <h4 class="text-2xl font-bold">Coffee Maker</h4>
+                        <p class="text-cr-slate">A close second, with many users looking to upgrade an existing machine.</p>
+                    </div>
+                    <div class="animated-item bg-white p-6 rounded-lg shadow-md text-center">
+                        <i class="fas fa-blender-phone text-5xl text-cr-green mb-4"></i>
+                        <h4 class="text-2xl font-bold">And More...</h4>
+                        <p class="text-cr-slate">Juicers, Toasters, Rice Cookers, TVs, Laptops, and Office Furniture also topped the list.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section flex flex-col items-center justify-center min-h-screen py-20 px-4 sm:px-8">
+            <div class="max-w-5xl w-full text-center">
+                <h2 class="animated-item text-3xl sm:text-4xl md:text-5xl font-bold mb-12">The Rationale: Why People Wait</h2>
+                <div class="grid md:grid-cols-2 gap-x-8 gap-y-12 text-left">
+                    <div class="animated-item">
+                        <div class="flex items-center mb-4">
+                            <i class="fas fa-piggy-bank text-3xl text-cr-green mr-4"></i>
+                            <h4 class="text-2xl font-bold">To Find a Good Deal</h4>
+                        </div>
+                        <p class="text-cr-slate mb-4">The primary driver is financial. Shoppers are actively looking for sales to justify the purchase.</p>
+                        <div class="bg-cr-light-gray p-6 rounded-lg italic shadow-inner">“I’m waiting because I don’t really need the items and would like to save money if possible... I’ll probably wait until I find a good deal.”</div>
+                    </div>
+                    <div class="animated-item">
+                        <div class="flex items-center mb-4">
+                            <i class="fas fa-arrow-up-from-bracket text-3xl text-cr-green mr-4"></i>
+                            <h4 class="text-2xl font-bold">To Upgrade an Existing Item</h4>
+                        </div>
+                        <p class="text-cr-slate mb-4">Many have a product that works, but isn't working well, creating a slow-burning need.</p>
+                        <div class="bg-cr-light-gray p-6 rounded-lg italic shadow-inner">“We have these things today, but they are starting to deteriorate... They work, just not as well as they used to.”</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section flex flex-col items-center justify-center min-h-screen py-20 px-4 sm:px-8 text-center bg-cr-light-gray">
+            <h2 class="animated-item text-3xl sm:text-4xl md:text-5xl font-bold mb-4">The Want vs. Need Spectrum</h2>
+            <p class="animated-item max-w-5xl text-lg sm:text-xl text-cr-slate">We discovered a fundamental split in how people shop. A <strong>need</strong> is urgent, your microwave just broke. A <strong>want</strong> can wait, you’re considering an air fryer but you’ll buy when the timing and price are right. That “waiting to buy” space, where 93% of our participants lived, represents a massive, unmet need.</p>
+            <img src="assets/want_need.png" alt="Diagram showing the want versus need spectrum for consumer purchases." class="animated-item h-60 sm:h-72 md:h-80 mt-8 object-contain">
+            <p class="animated-item max-w-5xl text-lg sm:text-xl text-cr-slate mt-8">For these shoppers one question surfaced again and again:</p>
+        </section>
+
+        <section class="section flex flex-col items-center justify-center min-h-screen py-20 px-4 sm:px-8 text-center">
+            <blockquote class="animated-item text-3xl md:text-4xl font-bold leading-tight max-w-6xl text-cr-dark mt-4 relative">
+                “What’s the lowest price this item will drop to, and when will that be?”
+            </blockquote>
+            <p class="animated-item max-w-5xl text-lg sm:text-xl text-cr-slate my-8">They ask this because they need to decide whether waiting is worth it, but the manual process of finding an answer is frustrating, inconsistent, and easy to forget.</p>
+            <blockquote class="animated-item bg-cr-light-gray p-8 rounded-lg text-xl sm:text-3xl italic text-cr-dark relative max-w-6xl mx-auto shadow-lg">
+                <span class="absolute top-0 left-0 -mt-4 -ml-4 text-8xl text-cr-green opacity-20">“</span>
+                I continue looking and looking and looking, and I usually forget to keep looking. And then one day I remember, and it’s expensive again.
+                <footer class="mt-4 text-base not-italic text-cr-slate">— Wizard of Oz Testing (Participant 9)</footer>
+            </blockquote>
+        </section>
+
+        <section class="section flex flex-col items-center justify-center min-h-screen py-20 px-4 sm:px-8 text-center">
+            <h2 class="animated-item text-4xl sm:text-5xl font-bold mb-6">The Mission Became Clear</h2>
+            <h3 class="animated-item text-2xl sm:text-3xl md:text-4xl font-extrabold text-cr-green mt-16 leading-snug max-w-6xl">How might we leverage Consumer Reports’ trusted brand to offload the mental effort of making these decisions and taking action?</h3>
+        </section>
+
+        <section id="our-answer-section" class="section flex flex-col items-center justify-center min-h-screen py-20 px-4 sm:px-8 text-center bg-cr-light-gray">
+            <h2 class="animated-item text-4xl sm:text-5xl font-bold mb-4">Our Answer: Best Time to Buy 2.0</h2>
+            <p class="animated-item max-w-4xl text-lg sm:text-xl text-cr-slate">A proactive buying agent that monitors products, notifies you at the perfect moment, and can even purchase on your behalf.</p>
+            <img src="assets/price_target_screen.png" alt="Mobile UI mock-up of the Best Time to Buy 2.0 dashboard" class="animated-item mt-10 w-auto h-auto max-h-[50vh] sm:max-h-none sm:h-[450px] transition-transform duration-300 hover:scale-105 mix-blend-multiply">
+        </section>
+
+        <section class="section flex flex-col items-center justify-center min-h-screen py-20 px-4 sm:px-8 text-center">
+            <div class="animated-item text-cr-green mb-6">
+                <i class="fas fa-hand fa-4x"></i>
+            </div>
+            <h2 class="animated-item text-5xl sm:text-6xl font-extrabold tracking-tight mb-4">But there was a catch.</h2>
+            <p class="animated-item max-w-4xl text-xl sm:text-2xl text-cr-slate">
+                An AI that can spend your money? That's a huge leap of faith.
+            </p>
+            <p class="animated-item max-w-4xl text-xl sm:text-2xl text-cr-slate mt-4">
+                Before our agent could be a partner, it first had to build <strong class="text-cr-green font-semibold">trust</strong>.
+            </p>
+        </section>
+
+        <section class="section flex flex-col items-center justify-center min-h-screen py-20 px-4 sm:px-8 text-center bg-cr-light-gray">
+            <h3 class="animated-item text-3xl sm:text-4xl font-bold mb-4">Principle 1: Financial Control</h3>
+            <p class="animated-item max-w-5xl text-lg sm:text-xl text-cr-slate">Users want to stay in charge. We provide clear opt-ins for automation, full price transparency with historical data, and in-the-loop notifications so there are no surprises.</p>
+        </section>
+
+        <section class="section flex flex-col items-center justify-center min-h-screen py-20 px-4 sm:px-8 text-center bg-cr-light-gray">
+            <img src="http://googleusercontent.com/file_content/1" alt="UI for setting a target price with historical data" class="animated-item mx-auto h-auto max-h-[75vh] w-full max-w-sm md:w-auto md:h-[600px] transition-transform duration-300 hover:scale-105 mix-blend-multiply">
+        </section>
+
+        <section class="section flex flex-col items-center justify-center min-h-screen py-20 px-4 sm:px-8 text-center">
+            <h3 class="animated-item text-3xl sm:text-4xl font-bold mb-4">Principle 2: Reassurance</h3>
+            <p class="animated-item max-w-5xl text-lg sm:text-xl text-cr-slate">People need confidence they’re getting the best deal. We provide smart criteria recommendations based on data and send expectation updates if market conditions change.</p>
+        </section>
+
+        <section class="section flex flex-col items-center justify-center min-h-screen py-20 px-4 sm:px-8 text-center">
+            <img src="http://googleusercontent.com/file_content/2" alt="UI showing recommended price targets" class="animated-item mx-auto h-auto max-h-[75vh] w-full max-w-sm md:w-auto md:h-[600px] transition-transform duration-300 hover:scale-105 mix-blend-multiply">
+            <blockquote class="animated-item mt-8 text-lg md:text-xl italic text-cr-dark max-w-5xl">"I want messages and info saying, 'hey it's not dropping as we expect in the timeline I set.'"</blockquote>
+        </section>
+
+        <section id="payoff-section" class="section flex flex-col items-center justify-center min-h-screen py-20 px-4 sm:px-8 text-center bg-cr-light-gray">
+            <h2 class="animated-item text-4xl sm:text-5xl font-bold mb-6">The Payoff: A True Partnership</h2>
+            <p class="animated-item max-w-5xl text-lg sm:text-xl text-cr-slate">Members gain time, money, and peace of mind. Consumer Reports deepens member relationships and projects additional affiliate revenue from capturing these "willing-to-wait" purchases.</p>
+            <div class="animated-item bg-white p-8 sm:p-10 rounded-lg mt-10 shadow-lg text-center">
+                <p class="text-lg uppercase tracking-wide text-cr-slate">Projected Affiliate Revenue Increase</p>
+                <p id="revenue-counter" class="text-5xl sm:text-6xl font-extrabold text-cr-green mt-2">+$0.0M</p>
+                <p class="mt-2 text-cr-slate">annually from a 5-10% lift in usage.</p>
+            </div>
+        </section>
+
+        <section class="section flex flex-col items-center justify-center min-h-screen py-20 px-4 sm:px-8 text-center">
+            <h2 class="animated-item text-4xl sm:text-5xl font-bold mb-6">The Path Forward</h2>
+            <p class="animated-item max-w-5xl text-lg sm:text-xl text-cr-slate">This is only the beginning. We envision a phased rollout that expands trust and capability over time.</p>
+        </section>
+
+        <section class="section flex flex-col items-center justify-center min-h-screen py-20 px-4 sm:px-8 text-center">
+            <div class="animated-item w-full max-w-3xl text-center">
+                <div class="inline-block w-16 h-16 bg-cr-green rounded-full flex items-center justify-center text-white font-bold text-2xl z-10 mx-auto">1</div>
+                <h3 class="font-bold text-3xl mt-6">Start with small appliances.</h3>
+                <p class="text-cr-slate text-xl mt-2">This is an area with great data and lower stakes, perfect for building user trust.</p>
+                <div class="mt-8 bg-cr-light-gray rounded-lg h-64 flex items-center justify-center">
+                    <i class="fas fa-blender text-6xl text-cr-slate"></i>
+                </div>
+            </div>
+        </section>
+
+        <section class="section flex flex-col items-center justify-center min-h-screen py-20 px-4 sm:px-8 text-center">
+            <div class="animated-item w-full max-w-3xl text-center">
+                <div class="inline-block w-16 h-16 bg-cr-green rounded-full flex items-center justify-center text-white font-bold text-2xl z-10 mx-auto">2</div>
+                <h3 class="font-bold text-3xl mt-6">Expand to larger purchases.</h3>
+                <p class="text-cr-slate text-xl mt-2">As trust grows, move to items like washing machines and TVs, where savings are even more significant.</p>
+                <div class="mt-8 bg-cr-light-gray rounded-lg h-64 flex items-center justify-center">
+                    <i class="fas fa-tv text-6xl text-cr-slate"></i>
+                </div>
+            </div>
+        </section>
+
+        <section class="section flex flex-col items-center justify-center min-h-screen py-20 px-4 sm:px-8 text-center">
+            <div class="animated-item w-full max-w-3xl text-center">
+                <div class="inline-block w-16 h-16 bg-cr-green rounded-full flex items-center justify-center text-white font-bold text-2xl z-10 mx-auto">3</div>
+                <h3 class="font-bold text-3xl mt-6">Evolve into full-journey support.</h3>
+                <p class="text-cr-slate text-xl mt-2">The ultimate goal is an agent that helps with proactive personalization, warranties, and even returns.</p>
+                <div class="mt-8 bg-cr-light-gray rounded-lg h-64 flex items-center justify-center">
+                    <i class="fas fa-shield-alt text-6xl text-cr-slate"></i>
+                </div>
+            </div>
+        </section>
+
+        <section class="section flex flex-col items-center justify-center min-h-screen py-20 px-4 sm:px-8 text-center bg-cr-dark text-white">
+            <p class="animated-item text-4xl sm:text-5xl font-bold mb-6">Thank you for following our journey.</p>
+            <p class="animated-item max-w-2xl text-lg text-gray-400">Together we’re building a smarter, fairer marketplace for everyone.</p>
+        </section>
+
     </main>
 
-    <footer class="bg-cr-dark text-white">
-        <div class="container mx-auto py-12 px-4 sm:px-6 lg:px-8">
-            <div class="text-center">
-                <p class="text-base text-gray-400">&copy; Made by Consumer Reports Capstone Team 2025</p>
-                <p class="mt-2 text-sm text-gray-500">A Capstone Project for the MHCI Program</p>
-            </div>
-        </div>
-    </footer>
-
     <script>
-        // --- UPDATED JAVASCRIPT ---
         document.addEventListener('DOMContentLoaded', () => {
-            // Observer for the content cards and their icons
-            const cardObserver = new IntersectionObserver((entries, observer) => {
+
+            // Mobile menu toggle
+            const menuBtn = document.getElementById('menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            if (menuBtn && mobileMenu) {
+                menuBtn.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                    const icon = menuBtn.querySelector('i');
+                    if (mobileMenu.classList.contains('hidden')) {
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
+                    } else {
+                        icon.classList.remove('fa-bars');
+                        icon.classList.add('fa-times');
+                    }
+                });
+            }
+
+
+            const sections = document.querySelectorAll('.section');
+
+            const animateValue = (obj, start, end, duration) => {
+                let startTimestamp = null;
+                const step = (timestamp) => {
+                    if (!startTimestamp) startTimestamp = timestamp;
+                    const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                    const value = progress * (end - start) + start;
+                    obj.innerHTML = `+$${value.toFixed(1)}M`;
+                    if (progress < 1) {
+                        window.requestAnimationFrame(step);
+                    } else {
+                        obj.innerHTML = `+$${end.toFixed(1)}M`;
+                    }
+                };
+                window.requestAnimationFrame(step);
+            };
+
+            const obs = new IntersectionObserver((entries, observer) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('is-visible');
-                        // Optional: unobserve after the animation runs
-                        // observer.unobserve(entry.target); 
+
+                        if (entry.target.id === 'payoff-section') {
+                            const revenueCounter = document.getElementById('revenue-counter');
+                            if (!revenueCounter.classList.contains('animated')) {
+                                revenueCounter.classList.add('animated');
+                                animateValue(revenueCounter, 0, 2.1, 1500);
+                            }
+                        }
+
+                        if (entry.target.id === 'our-answer-section') {
+                            if (!entry.target.classList.contains('confetti-fired')) {
+                                entry.target.classList.add('confetti-fired'); // Prevent re-firing 
+                                confetti({
+                                    particleCount: 150,
+                                    spread: 90,
+                                    origin: {
+                                        y: 0.6
+                                    }
+                                });
+                            }
+                        }
+
                     }
                 });
             }, {
-                threshold: 0.1 // Trigger when 10% of the card is visible
+                rootMargin: '0px 0px -20% 0px'
             });
 
-            document.querySelectorAll('.content-card').forEach(card => {
-                cardObserver.observe(card);
-            });
-
-            // A separate observer for the sections to animate their sticky titles
-            const titleObserver = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    // Find the sticky title inside the section that is being observed
-                    const stickyTitle = entry.target.querySelector('.sticky-title');
-                    if (entry.isIntersecting) {
-                        stickyTitle.classList.add('is-visible');
-                    }
-                    // We don't remove the class, so titles only animate in once
-                });
-            }, {
-                // This triggers when the section's top edge is 128px (8rem) from the viewport top.
-                // It ensures the title animates just as it becomes "sticky".
-                rootMargin: "-128px 0px -40% 0px", 
-                threshold: 0
-            });
-
-            document.querySelectorAll('.scroll-section').forEach(section => {
-                titleObserver.observe(section);
-            });
+            sections.forEach(s => obs.observe(s));
         });
     </script>
 </body>
+
 </html>
