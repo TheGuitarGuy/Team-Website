@@ -33,12 +33,15 @@
             scroll-behavior: smooth
         }
 
-        main {
-            scroll-snap-type: y mandatory
-        }
+        /* Scrollytelling styles for desktop (md screens and up) */
+        @media (min-width: 768px) {
+            main {
+                scroll-snap-type: y mandatory;
+            }
 
-        section {
-            scroll-snap-align: start
+            section {
+                scroll-snap-align: start;
+            }
         }
 
         /* Base styles for animated elements */
@@ -123,7 +126,7 @@
         </div>
     </header>
 
-    <main class="h-screen overflow-y-scroll">
+    <main class="md:h-screen md:overflow-y-scroll">
 
         <section class="section flex flex-col items-center justify-center min-h-screen py-20 px-4 sm:px-8 text-center">
             <h1 class="animated-item text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight mb-6">Agentic AI for the Consumer</h1>
