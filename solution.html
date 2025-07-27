@@ -27,14 +27,24 @@
     </script>
     <style>
         body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
-        main { scroll-snap-type: y mandatory; }
+        
         .section { 
-            scroll-snap-align: start;
             display: flex;
             align-items: center;
             justify-content: center;
             min-height: 100vh;
         }
+
+        /* Scrollytelling styles for desktop (md screens and up) */
+        @media (min-width: 768px) {
+            main {
+                scroll-snap-type: y mandatory;
+            }
+            .section {
+                scroll-snap-align: start;
+            }
+        }
+
         .animated-item {
             opacity: 0;
             transform: translateY(30px);
@@ -89,17 +99,17 @@
         </div>
     </header>
 
-    <main class="h-screen overflow-y-scroll">
-        <section class="section px-8 text-center bg-cr-light-gray">
+    <main class="md:h-screen md:overflow-y-scroll">
+        <section class="section px-8 py-20 text-center bg-cr-light-gray">
             <div class="max-w-4xl">
                 <h1 class="animated-item text-5xl sm:text-6xl font-extrabold tracking-tight text-cr-dark">A Buying Agent You Can Trust</h1>
                 <p class="animated-item mt-4 mx-auto text-lg sm:text-xl text-cr-slate">
-                    Best Time to Buy 2.0 transforms a static benefit into a dynamic partner. It monitors products, provides transparent guidance, and acts on your behalf—all grounded in CR's legacy of trust.
+                    Best Time to Buy 2.0 transforms a static benefit into a dynamic partner. It monitors products, provides transparent guidance, and acts on your behalf, all grounded in CR's legacy of trust.
                 </p>
             </div>
         </section>
 
-        <section class="section px-8 text-center">
+        <section class="section px-8 py-20 text-center">
              <div class="max-w-5xl">
                 <h2 class="animated-item text-4xl sm:text-5xl font-bold tracking-tight text-cr-dark">See Our Solution in Action</h2>
                 <p class="animated-item mt-4 text-lg sm:text-xl text-cr-slate">Watch this short demo to see how Best Time to Buy 2.0 can change the way you shop.</p>
@@ -114,9 +124,9 @@
             </div>
         </section>
 
-        <section class="section px-8 bg-cr-light-gray">
+        <section class="section px-8 py-20 bg-cr-light-gray">
             <div class="container mx-auto grid md:grid-cols-2 gap-12 lg:gap-24 items-center">
-                <div class="animated-item">
+                <div class="animated-item mb-12 md:mb-0">
                     <span class="inline-block bg-cr-green/10 text-cr-green font-semibold px-3 py-1 rounded-full mb-4">Your Shopping Companion</span>
                     <h2 class="text-4xl sm:text-5xl font-bold text-cr-dark">From Discovery to Purchase</h2>
                     <p class="mt-4 text-lg sm:text-xl text-cr-slate">Find a product you love, and let our agent take over. We'll help you find the best time to buy, so you can make a confident decision.</p>
@@ -127,22 +137,22 @@
             </div>
         </section>
 
-        <section class="section px-8">
+        <section class="section px-8 py-20">
             <div class="container mx-auto grid md:grid-cols-2 gap-12 lg:gap-24 items-center">
-                <div class="animated-media text-center">
-                    <img src="assets/price_target_screen.png" alt="Price Target Screen" class="solution-image inline-block rounded-lg shadow-xl w-auto max-h-60vh">
-                </div>
-                 <div class="animated-item">
+                 <div class="animated-item md:col-start-2 mb-12 md:mb-0">
                     <span class="inline-block bg-cr-green/10 text-cr-green font-semibold px-3 py-1 rounded-full mb-4">Real-Time Guidance</span>
                     <h2 class="text-4xl sm:text-5xl font-bold text-cr-dark">Set a Target, We'll Handle the Rest.</h2>
                     <p class="mt-4 text-lg sm:text-xl text-cr-slate">Our agent monitors prices in real-time and provides data-driven targets, while still allowing for full customization.</p>
                 </div>
+                <div class="animated-media text-center md:row-start-1">
+                    <img src="assets/price_target_screen.png" alt="Price Target Screen" class="solution-image inline-block rounded-lg shadow-xl w-auto max-h-60vh">
+                </div>
             </div>
         </section>
 
-        <section class="section px-8 bg-cr-light-gray">
+        <section class="section px-8 py-20 bg-cr-light-gray">
             <div class="container mx-auto grid md:grid-cols-2 gap-12 lg:gap-24 items-center">
-                <div class="animated-item">
+                <div class="animated-item mb-12 md:mb-0">
                     <span class="inline-block bg-cr-green/10 text-cr-green font-semibold px-3 py-1 rounded-full mb-4">User Control</span>
                     <h2 class="text-4xl sm:text-5xl font-bold text-cr-dark">You're Always in the Driver's Seat.</h2>
                     <p class="mt-4 text-lg sm:text-xl text-cr-slate">The choice to "Buy Automatically" or "Notify Me to Confirm" ensures you have the final say, building confidence and trust.</p>
@@ -153,22 +163,22 @@
             </div>
         </section>
 
-        <section class="section px-8">
+        <section class="section px-8 py-20">
             <div class="container mx-auto grid md:grid-cols-2 gap-12 lg:gap-24 items-center">
-                <div class="animated-media text-center">
-                    <img src="assets/recommended_adjustments.png" alt="Recommended Adjustments Screen" class="solution-image inline-block rounded-lg shadow-xl w-auto max-h-60vh">
-                </div>
-                 <div class="animated-item">
+                 <div class="animated-item md:col-start-2 mb-12 md:mb-0">
                     <span class="inline-block bg-cr-green/10 text-cr-green font-semibold px-3 py-1 rounded-full mb-4">Smart Adjustments</span>
                     <h2 class="text-4xl sm:text-5xl font-bold text-cr-dark">Adapts to Market Changes</h2>
                     <p class="mt-4 text-lg sm:text-xl text-cr-slate">If the likelihood of a price drop gets low, the agent will recommend adjustments to your target to improve your chances of success.</p>
                 </div>
+                <div class="animated-media text-center md:row-start-1">
+                    <img src="assets/recommended_adjustments.png" alt="Recommended Adjustments Screen" class="solution-image inline-block rounded-lg shadow-xl w-auto max-h-60vh">
+                </div>
             </div>
         </section>
 
-        <section class="section px-8 bg-cr-light-gray">
+        <section class="section px-8 py-20 bg-cr-light-gray">
             <div class="container mx-auto grid md:grid-cols-2 gap-12 lg:gap-24 items-center">
-                <div class="animated-item">
+                <div class="animated-item mb-12 md:mb-0">
                     <span class="inline-block bg-cr-green/10 text-cr-green font-semibold px-3 py-1 rounded-full mb-4">Seamless Experience</span>
                     <h2 class="text-4xl sm:text-5xl font-bold text-cr-dark">From Purchase to Placement</h2>
                     <p class="mt-4 text-lg sm:text-xl text-cr-slate">Once the purchase is made, you get instant confirmation. The agent keeps you in the loop, so you always know your order's status.</p>
@@ -179,20 +189,20 @@
             </div>
         </section>
 
-        <section class="section px-8">
+        <section class="section px-8 py-20">
             <div class="container mx-auto grid md:grid-cols-2 gap-12 lg:gap-24 items-center">
-                <div class="animated-media text-center">
-                    <img src="assets/owned_products.png" alt="Owned Products Screen" class="solution-image inline-block rounded-lg shadow-xl w-auto max-h-60vh">
-                </div>
-                <div class="animated-item">
+                <div class="animated-item md:col-start-2 mb-12 md:mb-0">
                     <span class="inline-block bg-cr-green/10 text-cr-green font-semibold px-3 py-1 rounded-full mb-4">Full Journey Support</span>
                     <h2 class="text-4xl sm:text-5xl font-bold text-cr-dark">Post-Purchase Peace of Mind</h2>
                     <p class="mt-4 text-lg sm:text-xl text-cr-slate">The agent stores warranty details for future use, enabling recall alerts or repair guides, turning a transaction into a long-term relationship.</p>
                 </div>
+                <div class="animated-media text-center md:row-start-1">
+                    <img src="assets/owned_products.png" alt="Owned Products Screen" class="solution-image inline-block rounded-lg shadow-xl w-auto max-h-60vh">
+                </div>
             </div>
         </section>
         
-        <section class="section px-8 text-center bg-cr-light-gray">
+        <section class="section px-8 py-20 text-center bg-cr-light-gray">
              <div class="container mx-auto">
                 <div class="max-w-3xl mx-auto">
                     <h2 class="animated-item text-4xl sm:text-5xl font-bold tracking-tight text-cr-dark">How It Works: An Agentic AI Experience</h2>
@@ -221,7 +231,7 @@
             </div>
         </section>
 
-        <section class="section h-screen bg-cr-dark text-white">
+        <section class="section py-20 bg-cr-dark text-white">
             <div class="text-center">
                 <p class="animated-item text-base text-gray-400">© Made by Consumer Reports Capstone Team 2025</p>
                 <p class="animated-item mt-2 text-sm text-gray-500">A Capstone Project for the MHCI Program</p>
