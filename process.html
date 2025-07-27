@@ -33,7 +33,7 @@
             scroll-behavior: smooth
         }
 
-        /* Scrollytelling styles for desktop (md screens and up) */
+        /* Scrollytelling for desktop */
         @media (min-width: 768px) {
             main {
                 scroll-snap-type: y mandatory;
@@ -103,7 +103,7 @@
 </head>
 
 <body class="bg-white text-cr-dark">
-    <header class="border-b border-gray-200 sticky top-0 bg-white/90 backdrop-blur-lg z-30">
+    <header class="border-b border-gray-200 bg-white">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
                 <a href="index.html" class="text-2xl font-bold text-cr-dark">Best Time to Buy <span class="text-cr-green">2.0</span></a>
@@ -277,11 +277,130 @@
             </div>
         </section>
 
+        <section class="section flex flex-col items-center justify-center min-h-screen py-20 px-4 sm:px-8 bg-cr-light-gray">
+            <div class="max-w-6xl w-full grid grid-cols-1 md:grid-cols-5 gap-8 md:gap-16 items-center">
+                <div class="md:col-span-3 text-left">
+                    <div class="animated-item text-cr-green mb-4"><i class="fas fa-clipboard-check fa-3x"></i></div>
+                    <h2 class="animated-item text-3xl sm:text-4xl md:text-5xl font-bold mb-4">Transition</h2>
+                    <p class="animated-item text-lg sm:text-xl text-cr-slate">
+                        This will be a transition point talking about direction.
+                    </p>
+                </div>
+
+                <div class="md:col-span-2 animated-item" style="transition-delay: 0.4s;">
+                    <div class="bg-white p-8 sm:p-10 rounded-xl space-y-8 text-center shadow-lg">
+                        <div>
+                            <p class="text-6xl sm:text-7xl font-extrabold text-cr-green">93%</p>
+                            <p class="text-lg sm:text-xl text-cr-slate mt-2">Are waiting to buy something specific</p>
+                        </div>
+                        <hr class="border-gray-300/70">
+                        <div>
+                            <p class="text-6xl sm:text-7xl font-extrabold text-cr-green">40</p>
+                            <p class="text-lg sm:text-xl text-cr-slate mt-2">Total Responses</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section flex flex-col items-center justify-center min-h-screen py-20 px-4 sm:px-8 bg-cr-light-gray">
+            <div class="max-w-6xl w-full grid grid-cols-1 md:grid-cols-5 gap-8 md:gap-16 items-center">
+                <div class="md:col-span-3 text-left">
+                    <div class="animated-item text-cr-green mb-4"><i class="fas fa-clipboard-check fa-3x"></i></div>
+                    <h2 class="animated-item text-3xl sm:text-4xl md:text-5xl font-bold mb-4">Are People Willing to Wait?</h2>
+                    <p class="animated-item text-lg sm:text-xl text-cr-slate">
+                        To validate our qualitative findings, we surveyed a wider audience ahead of Amazon's Prime Day. The results were overwhelming: the vast majority of consumers are actively considering a purchase, just waiting for the right moment to act.
+                    </p>
+                </div>
+
+                <div class="md:col-span-2 animated-item" style="transition-delay: 0.4s;">
+                    <div class="bg-white p-8 sm:p-10 rounded-xl space-y-8 text-center shadow-lg">
+                        <div>
+                            <p class="text-6xl sm:text-7xl font-extrabold text-cr-green">93%</p>
+                            <p class="text-lg sm:text-xl text-cr-slate mt-2">Are waiting to buy something specific</p>
+                        </div>
+                        <hr class="border-gray-300/70">
+                        <div>
+                            <p class="text-6xl sm:text-7xl font-extrabold text-cr-green">40</p>
+                            <p class="text-lg sm:text-xl text-cr-slate mt-2">Total Responses</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section flex flex-col items-center justify-center min-h-screen py-20 px-4 sm:px-8 bg-cr-light-gray">
+            <div class="text-center max-w-5xl w-full">
+                <div class="animated-item text-cr-green mb-4"><i class="fas fa-cart-shopping fa-3x"></i></div>
+                <h2 class="animated-item text-3xl sm:text-4xl md:text-5xl font-bold mb-10">What's On The Wishlist?</h2>
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="animated-item bg-white p-6 rounded-lg shadow-md text-center">
+                        <i class="fas fa-tornado text-5xl text-cr-green mb-4"></i>
+                        <h4 class="text-2xl font-bold">Air Fryer</h4>
+                        <p class="text-cr-slate">The most frequently named "wait to buy" item across all demographics.</p>
+                    </div>
+                    <div class="animated-item bg-white p-6 rounded-lg shadow-md text-center">
+                        <i class="fas fa-mug-hot text-5xl text-cr-green mb-4"></i>
+                        <h4 class="text-2xl font-bold">Coffee Maker</h4>
+                        <p class="text-cr-slate">A close second, with many users looking to upgrade an existing machine.</p>
+                    </div>
+                    <div class="animated-item bg-white p-6 rounded-lg shadow-md text-center">
+                        <i class="fas fa-blender-phone text-5xl text-cr-green mb-4"></i>
+                        <h4 class="text-2xl font-bold">And More...</h4>
+                        <p class="text-cr-slate">Juicers, Toasters, Rice Cookers, TVs, Laptops, and Office Furniture also topped the list.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section flex flex-col items-center justify-center min-h-screen py-20 px-4 sm:px-8">
+            <div class="max-w-5xl w-full text-center">
+                <h2 class="animated-item text-3xl sm:text-4xl md:text-5xl font-bold mb-12">The Rationale: Why People Wait</h2>
+                <div class="grid md:grid-cols-2 gap-x-8 gap-y-12 text-left">
+                    <div class="animated-item">
+                        <div class="flex items-center mb-4">
+                            <i class="fas fa-piggy-bank text-3xl text-cr-green mr-4"></i>
+                            <h4 class="text-2xl font-bold">To Find a Good Deal</h4>
+                        </div>
+                        <p class="text-cr-slate mb-4">The primary driver is financial. Shoppers are actively looking for sales to justify the purchase.</p>
+                        <div class="bg-cr-light-gray p-6 rounded-lg italic shadow-inner">“I’m waiting because I don’t really need the items and would like to save money if possible... I’ll probably wait until I find a good deal.”</div>
+                    </div>
+                    <div class="animated-item">
+                        <div class="flex items-center mb-4">
+                            <i class="fas fa-arrow-up-from-bracket text-3xl text-cr-green mr-4"></i>
+                            <h4 class="text-2xl font-bold">To Upgrade an Existing Item</h4>
+                        </div>
+                        <p class="text-cr-slate mb-4">Many have a product that works, but isn't working well, creating a slow-burning need.</p>
+                        <div class="bg-cr-light-gray p-6 rounded-lg italic shadow-inner">“We have these things today, but they are starting to deteriorate... They work, just not as well as they used to.”</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section flex flex-col items-center justify-center min-h-screen py-20 px-4 sm:px-8 text-center bg-cr-light-gray">
+            <h2 class="animated-item text-3xl sm:text-4xl md:text-5xl font-bold mb-4">The Want vs. Need Spectrum</h2>
+            <p class="animated-item max-w-5xl text-lg sm:text-xl text-cr-slate">We discovered a fundamental split in how people shop. A <strong>need</strong> is urgent, your microwave just broke. A <strong>want</strong> can wait, you’re considering an air fryer but you’ll buy when the timing and price are right. That “waiting to buy” space, where 93% of our participants lived, represents a massive, unmet need.</p>
+            <img src="assets/want_need.png" alt="Diagram showing the want versus need spectrum for consumer purchases." class="animated-item h-60 sm:h-72 md:h-80 mt-8 object-contain">
+            <p class="animated-item max-w-5xl text-lg sm:text-xl text-cr-slate mt-8">For these shoppers one question surfaced again and again:</p>
+        </section>
+
+        <section class="section flex flex-col items-center justify-center min-h-screen py-20 px-4 sm:px-8 text-center">
+            <blockquote class="animated-item text-3xl md:text-4xl font-bold leading-tight max-w-6xl text-cr-dark mt-4 relative">
+                “What’s the lowest price this item will drop to, and when will that be?”
+            </blockquote>
+            <p class="animated-item max-w-5xl text-lg sm:text-xl text-cr-slate my-8">They ask this because they need to decide whether waiting is worth it, but the manual process of finding an answer is frustrating, inconsistent, and easy to forget.</p>
+            <blockquote class="animated-item bg-cr-light-gray p-8 rounded-lg text-xl sm:text-3xl italic text-cr-dark relative max-w-6xl mx-auto shadow-lg">
+                <span class="absolute top-0 left-0 -mt-4 -ml-4 text-8xl text-cr-green opacity-20">“</span>
+                I continue looking and looking and looking, and I usually forget to keep looking. And then one day I remember, and it’s expensive again.
+                <footer class="mt-4 text-base not-italic text-cr-slate">— Wizard of Oz Testing (Participant 9)</footer>
+            </blockquote>
+        </section>
+
         <section class="section flex flex-col items-center justify-center min-h-screen py-20 px-4 sm:px-8 text-center bg-white">
             <div class="max-w-5xl w-full">
                 <div class="animated-item text-cr-green mb-4"><i class="fas fa-hat-wizard fa-3x"></i></div>
-                <h2 class="animated-item text-3xl sm:text-4xl md:text-5xl font-bold mb-4">Wizard of Ozzing an AI Buying Agent</h2>
-                <p class="animated-item text-lg sm:text-xl text-cr-slate">Our early findings pointed to a powerful idea: an AI agent that buys things for you. But would anyone trust it? To find out, we ran a "Wizard of Oz" test. In 45-minute sessions, 11 participants interacted via text with what they thought was an AI. In reality, it was one of us, acting as the agent to discover the moments that build or break trust.</p>
+                <h2 class="animated-item text-3xl sm:text-4xl md:text-5xl font-bold mb-4">Testing Our Agent with Real People</h2>
+                <p class="animated-item text-lg sm:text-xl text-cr-slate">Our early findings pointed to a powerful idea: an AI agent that buys things for you. But would anyone trust it? To find out, we ran a "Wizard of Oz" test. In 45-minute sessions, 11 participants interacted via text with what they thought was an AI. In reality, it was one of us, acting as the agent to discover the moments that build—or break—trust.</p>
                 <div class="animated-item mt-10 bg-cr-light-gray rounded-lg h-64 flex items-center justify-center">
                     <i class="fas fa-mobile-screen-button text-6xl text-cr-slate"></i>
                 </div>
@@ -383,99 +502,6 @@
             </div>
         </section>
 
-        <section class="section flex flex-col items-center justify-center min-h-screen py-20 px-4 sm:px-8 bg-cr-light-gray">
-            <div class="max-w-6xl w-full grid grid-cols-1 md:grid-cols-5 gap-8 md:gap-16 items-center">
-                <div class="md:col-span-3 text-left">
-                    <div class="animated-item text-cr-green mb-4"><i class="fas fa-clipboard-check fa-3x"></i></div>
-                    <h2 class="animated-item text-3xl sm:text-4xl md:text-5xl font-bold mb-4">Are People Willing to Wait?</h2>
-                    <p class="animated-item text-lg sm:text-xl text-cr-slate">
-                        To validate our qualitative findings, we surveyed a wider audience ahead of Amazon's Prime Day. The results were overwhelming: the vast majority of consumers are actively considering a purchase, just waiting for the right moment to act.
-                    </p>
-                </div>
-
-                <div class="md:col-span-2 animated-item" style="transition-delay: 0.4s;">
-                    <div class="bg-white p-8 sm:p-10 rounded-xl space-y-8 text-center shadow-lg">
-                        <div>
-                            <p class="text-6xl sm:text-7xl font-extrabold text-cr-green">93%</p>
-                            <p class="text-lg sm:text-xl text-cr-slate mt-2">Are waiting to buy something specific</p>
-                        </div>
-                        <hr class="border-gray-300/70">
-                        <div>
-                            <p class="text-6xl sm:text-7xl font-extrabold text-cr-green">40</p>
-                            <p class="text-lg sm:text-xl text-cr-slate mt-2">Total Responses</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="section flex flex-col items-center justify-center min-h-screen py-20 px-4 sm:px-8 bg-cr-light-gray">
-            <div class="text-center max-w-5xl w-full">
-                <div class="animated-item text-cr-green mb-4"><i class="fas fa-cart-shopping fa-3x"></i></div>
-                <h2 class="animated-item text-3xl sm:text-4xl md:text-5xl font-bold mb-10">What's On The Wishlist?</h2>
-                <div class="grid md:grid-cols-3 gap-6">
-                    <div class="animated-item bg-white p-6 rounded-lg shadow-md text-center">
-                        <i class="fas fa-tornado text-5xl text-cr-green mb-4"></i>
-                        <h4 class="text-2xl font-bold">Air Fryer</h4>
-                        <p class="text-cr-slate">The most frequently named "wait to buy" item across all demographics.</p>
-                    </div>
-                    <div class="animated-item bg-white p-6 rounded-lg shadow-md text-center">
-                        <i class="fas fa-mug-hot text-5xl text-cr-green mb-4"></i>
-                        <h4 class="text-2xl font-bold">Coffee Maker</h4>
-                        <p class="text-cr-slate">A close second, with many users looking to upgrade an existing machine.</p>
-                    </div>
-                    <div class="animated-item bg-white p-6 rounded-lg shadow-md text-center">
-                        <i class="fas fa-blender-phone text-5xl text-cr-green mb-4"></i>
-                        <h4 class="text-2xl font-bold">And More...</h4>
-                        <p class="text-cr-slate">Juicers, Toasters, Rice Cookers, TVs, Laptops, and Office Furniture also topped the list.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="section flex flex-col items-center justify-center min-h-screen py-20 px-4 sm:px-8">
-            <div class="max-w-5xl w-full text-center">
-                <h2 class="animated-item text-3xl sm:text-4xl md:text-5xl font-bold mb-12">The Rationale: Why People Wait</h2>
-                <div class="grid md:grid-cols-2 gap-x-8 gap-y-12 text-left">
-                    <div class="animated-item">
-                        <div class="flex items-center mb-4">
-                            <i class="fas fa-piggy-bank text-3xl text-cr-green mr-4"></i>
-                            <h4 class="text-2xl font-bold">To Find a Good Deal</h4>
-                        </div>
-                        <p class="text-cr-slate mb-4">The primary driver is financial. Shoppers are actively looking for sales to justify the purchase.</p>
-                        <div class="bg-cr-light-gray p-6 rounded-lg italic shadow-inner">“I’m waiting because I don’t really need the items and would like to save money if possible... I’ll probably wait until I find a good deal.”</div>
-                    </div>
-                    <div class="animated-item">
-                        <div class="flex items-center mb-4">
-                            <i class="fas fa-arrow-up-from-bracket text-3xl text-cr-green mr-4"></i>
-                            <h4 class="text-2xl font-bold">To Upgrade an Existing Item</h4>
-                        </div>
-                        <p class="text-cr-slate mb-4">Many have a product that works, but isn't working well, creating a slow-burning need.</p>
-                        <div class="bg-cr-light-gray p-6 rounded-lg italic shadow-inner">“We have these things today, but they are starting to deteriorate... They work, just not as well as they used to.”</div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="section flex flex-col items-center justify-center min-h-screen py-20 px-4 sm:px-8 text-center bg-cr-light-gray">
-            <h2 class="animated-item text-3xl sm:text-4xl md:text-5xl font-bold mb-4">The Want vs. Need Spectrum</h2>
-            <p class="animated-item max-w-5xl text-lg sm:text-xl text-cr-slate">We discovered a fundamental split in how people shop. A <strong>need</strong> is urgent, your microwave just broke. A <strong>want</strong> can wait, you’re considering an air fryer but you’ll buy when the timing and price are right. That “waiting to buy” space, where 93% of our participants lived, represents a massive, unmet need.</p>
-            <img src="assets/want_need.png" alt="Diagram showing the want versus need spectrum for consumer purchases." class="animated-item h-60 sm:h-72 md:h-80 mt-8 object-contain">
-            <p class="animated-item max-w-5xl text-lg sm:text-xl text-cr-slate mt-8">For these shoppers one question surfaced again and again:</p>
-        </section>
-
-        <section class="section flex flex-col items-center justify-center min-h-screen py-20 px-4 sm:px-8 text-center">
-            <blockquote class="animated-item text-3xl md:text-4xl font-bold leading-tight max-w-6xl text-cr-dark mt-4 relative">
-                “What’s the lowest price this item will drop to, and when will that be?”
-            </blockquote>
-            <p class="animated-item max-w-5xl text-lg sm:text-xl text-cr-slate my-8">They ask this because they need to decide whether waiting is worth it, but the manual process of finding an answer is frustrating, inconsistent, and easy to forget.</p>
-            <blockquote class="animated-item bg-cr-light-gray p-8 rounded-lg text-xl sm:text-3xl italic text-cr-dark relative max-w-6xl mx-auto shadow-lg">
-                <span class="absolute top-0 left-0 -mt-4 -ml-4 text-8xl text-cr-green opacity-20">“</span>
-                I continue looking and looking and looking, and I usually forget to keep looking. And then one day I remember, and it’s expensive again.
-                <footer class="mt-4 text-base not-italic text-cr-slate">— Wizard of Oz Testing (Participant 9)</footer>
-            </blockquote>
-        </section>
-
         <section class="section flex flex-col items-center justify-center min-h-screen py-20 px-4 sm:px-8 text-center">
             <h2 class="animated-item text-4xl sm:text-5xl font-bold mb-6">The Mission Became Clear</h2>
             <h3 class="animated-item text-2xl sm:text-3xl md:text-4xl font-extrabold text-cr-green mt-16 leading-snug max-w-6xl">How might we leverage Consumer Reports’ trusted brand to offload the mental effort of making these decisions and taking action?</h3>
@@ -570,6 +596,13 @@
         <section class="section flex flex-col items-center justify-center min-h-screen py-20 px-4 sm:px-8 text-center bg-cr-dark text-white">
             <p class="animated-item text-4xl sm:text-5xl font-bold mb-6">Thank you for following our journey.</p>
             <p class="animated-item max-w-2xl text-lg text-gray-400">Together we’re building a smarter, fairer marketplace for everyone.</p>
+        </section>
+
+        <section class="section flex flex-col items-center justify-center min-h-screen bg-cr-dark text-white">
+            <div class="text-center px-4">
+                <p class="text-base text-gray-400">&copy; Made by Consumer Reports Capstone Team 2025</p>
+                <p class="mt-2 text-sm text-gray-500">A Capstone Project for the MHCI Program</p>
+            </div>
         </section>
 
     </main>
