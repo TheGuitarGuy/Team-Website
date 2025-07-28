@@ -15,7 +15,7 @@
             'cr-green': '#00B96F',
             'cr-green-dark': '#00875A',
             'cr-dark': '#111827',
-            'cr-slate': '#6B7280',
+            'cr-slate': '#4A5568',
             'cr-light-gray': '#F3F4F6',
           },
           maxHeight: {
@@ -75,34 +75,41 @@
         .solution-image:hover {
             transform: scale(1.05);
         }
+
+        /* Basic focus outline for accessibility */
+        :focus-visible {
+            outline: 2px solid #00B96F; /* cr-green */
+            outline-offset: 2px;
+        }
     </style>
 </head>
 <body class="bg-white text-cr-dark">
+    <a href="#main-content" class="sr-only focus:not-sr-only absolute left-0 top-0 bg-cr-green text-white p-3 rounded-br-lg z-50">Skip to main content</a>
 
     <header class="border-b border-gray-200 sticky top-0 bg-white/90 backdrop-blur-lg z-30">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
-                <a href="index.html" class="text-2xl font-bold text-cr-dark">Best Time to Buy <span class="text-cr-green">2.0</span></a>
-                <nav class="hidden md:flex space-x-8">
-                    <a href="solution.html" class="text-cr-green font-semibold">Our Solution</a>
+                <a href="index.html" class="text-2xl font-bold text-cr-dark" aria-label="Best Time to Buy 2.0 - Home">Best Time to Buy <span class="text-cr-green">2.0</span></a>
+                <nav class="hidden md:flex space-x-8" aria-label="Main navigation">
+                    <a href="solution.html" class="text-cr-green font-semibold" aria-current="page">Our Solution</a>
                     <a href="team.html" class="text-gray-500 hover:text-cr-green">The Team</a>
                     <a href="process.html" class="text-gray-500 hover:text-cr-green">Our Process</a>
                 </nav>
                 <div class="md:hidden">
-                    <button id="menu-btn" class="text-cr-dark focus:outline-none">
+                    <button id="menu-btn" class="text-cr-dark focus:outline-none" aria-label="Open mobile menu" aria-expanded="false" aria-controls="mobile-menu">
                         <i class="fas fa-bars fa-lg"></i>
                     </button>
                 </div>
             </div>
         </div>
-        <div id="mobile-menu" class="hidden md:hidden">
-            <a href="solution.html" class="block text-center py-4 text-cr-green font-semibold hover:bg-cr-green hover:text-white transition-colors duration-300">Our Solution</a>
-            <a href="team.html" class="block text-center py-4 text-gray-500 hover:bg-cr-green hover:text-white transition-colors duration-300">The Team</a>
-            <a href="process.html" class="block text-center py-4 text-gray-500 hover:bg-cr-green hover:text-white transition-colors duration-300">Our Process</a>
+        <div id="mobile-menu" class="hidden md:hidden" role="menu" aria-label="Mobile navigation">
+            <a href="solution.html" class="block text-center py-4 text-cr-green font-semibold hover:bg-cr-green hover:text-white transition-colors duration-300" role="menuitem">Our Solution</a>
+            <a href="team.html" class="block text-center py-4 text-gray-500 hover:bg-cr-green hover:text-white transition-colors duration-300" role="menuitem">The Team</a>
+            <a href="process.html" class="block text-center py-4 text-gray-500 hover:bg-cr-green hover:text-white transition-colors duration-300" role="menuitem">Our Process</a>
         </div>
     </header>
 
-    <main class="md:h-screen md:overflow-y-scroll">
+    <main id="main-content" class="md:h-screen md:overflow-y-scroll">
         <section class="section px-8 py-20 text-center bg-cr-light-gray">
             <div class="max-w-4xl">
                 <img src="assets/cr_logo.png" alt="Consumer Reports Logo" class="animated-item h-20 mb-8 mx-auto rounded-md">
@@ -119,9 +126,9 @@
                 <p class="animated-item mt-4 text-lg sm:text-xl text-cr-slate">Watch this short demo to see how Best Time to Buy 2.0 can change the way you shop.</p>
                 <div class="animated-media mt-8 w-full">
                     <div class="aspect-video w-full overflow-hidden rounded-lg shadow-2xl border border-gray-200">
-                        <video class="w-full h-full object-cover" controls autoplay loop muted playsinline>
+                        <video class="w-full h-full object-cover" controls autoplay loop muted playsinline title="Demo video showing Best Time to Buy 2.0 in action" aria-describedby="video-description">
                             <source src="assets/video.mp4" type="video/mp4">
-                            Your browser does not support the video tag.
+                            <p id="video-description">Your browser does not support the video tag. Here is a <a href="path/to/video-transcript.txt" aria-label="Download transcript for Best Time to Buy 2.0 demo video">transcript of the video</a>.</p>
                         </video>
                     </div>
                 </div>
@@ -136,7 +143,7 @@
                     <p class="mt-4 text-lg sm:text-xl text-cr-slate">Find a product you love, and let our agent take over. We'll help you find the best time to buy, so you can make a confident decision.</p>
                 </div>
                 <div class="animated-media text-center">
-                    <img src="assets/specific_product.png" alt="Product Details Screen" class="solution-image inline-block w-auto max-h-60vh">
+                    <img src="assets/specific_product.png" alt="Screenshot of the Best Time to Buy 2.0 interface showing details for a specific product, including price history and purchase options." class="solution-image inline-block w-auto max-h-60vh">
                 </div>
             </div>
         </section>
@@ -149,7 +156,7 @@
                     <p class="mt-4 text-lg sm:text-xl text-cr-slate">Our agent monitors prices in real-time and provides data-driven targets, while still allowing for full customization.</p>
                 </div>
                 <div class="animated-media text-center md:row-start-1">
-                    <img src="assets/price_target_screen.png" alt="Price Target Screen" class="solution-image inline-block w-auto max-h-60vh">
+                    <img src="assets/price_target_screen.png" alt="Screenshot of the Best Time to Buy 2.0 interface displaying a price target setting screen, showing current price, target price, and customization options." class="solution-image inline-block w-auto max-h-60vh">
                 </div>
             </div>
         </section>
@@ -162,7 +169,7 @@
                     <p class="mt-4 text-lg sm:text-xl text-cr-slate">The choice to "Buy Automatically" or "Notify Me to Confirm" ensures you have the final say, building confidence and trust.</p>
                 </div>
                 <div class="animated-media text-center">
-                    <img src="assets/confirmation_choice.png" alt="Confirmation Choice Screen" class="solution-image inline-block w-auto max-h-60vh">
+                    <img src="assets/confirmation_choice.png" alt="Screenshot of Best Time to Buy 2.0's confirmation choice screen, offering options to 'Buy Automatically' or 'Notify Me to Confirm'." class="solution-image inline-block w-auto max-h-60vh">
                 </div>
             </div>
         </section>
@@ -175,7 +182,7 @@
                     <p class="mt-4 text-lg sm:text-xl text-cr-slate">If the likelihood of a price drop gets low, the agent will recommend adjustments to your target to improve your chances of success.</p>
                 </div>
                 <div class="animated-media text-center md:row-start-1">
-                    <img src="assets/recommended_adjustments.png" alt="Recommended Adjustments Screen" class="solution-image inline-block w-auto max-h-60vh">
+                    <img src="assets/recommended_adjustments.png" alt="Screenshot of Best Time to Buy 2.0's recommended adjustments screen, suggesting changes to price targets based on market conditions." class="solution-image inline-block w-auto max-h-60vh">
                 </div>
             </div>
         </section>
@@ -188,7 +195,7 @@
                     <p class="mt-4 text-lg sm:text-xl text-cr-slate">Once the purchase is made, you get instant confirmation. The agent keeps you in the loop, so you always know your order's status.</p>
                 </div>
                 <div class="animated-media text-center">
-                    <img src="assets/purchase_placed.png" alt="Purchase Placed Screen" class="solution-image inline-block w-auto max-h-60vh">
+                    <img src="assets/purchase_placed.png" alt="Screenshot of the Best Time to Buy 2.0 purchase confirmation screen, indicating a successful order and providing status updates." class="solution-image inline-block w-auto max-h-60vh">
                 </div>
             </div>
         </section>
@@ -201,7 +208,7 @@
                     <p class="mt-4 text-lg sm:text-xl text-cr-slate">The agent stores warranty details for future use, enabling recall alerts or repair guides, turning a transaction into a long-term relationship.</p>
                 </div>
                 <div class="animated-media text-center md:row-start-1">
-                    <img src="assets/owned_products.png" alt="Owned Products Screen" class="solution-image inline-block w-auto max-h-60vh">
+                    <img src="assets/owned_products.png" alt="Screenshot of the Best Time to Buy 2.0 owned products screen, showing a list of purchased items and options for warranty details and recall alerts." class="solution-image inline-block w-auto max-h-60vh">
                 </div>
             </div>
         </section>
@@ -217,17 +224,17 @@
                 
                 <div class="mt-16 grid md:grid-cols-3 gap-8">
                     <div class="animated-item p-6 bg-white rounded-lg border shadow-lg" style="transition-delay: 0.2s;">
-                        <i class="fas fa-database text-4xl text-cr-green"></i>
+                        <i class="fas fa-database text-4xl text-cr-green" aria-hidden="true"></i>
                         <h3 class="text-xl font-semibold text-cr-dark mt-4">Robust Price Data</h3>
                         <p class="mt-2 text-cr-slate">We partner with best-in-class services for vast amounts of data, or build this capability internally over time.</p>
                     </div>
                     <div class="animated-item p-6 bg-white rounded-lg border shadow-lg" style="transition-delay: 0.3s;">
-                        <i class="fas fa-robot text-4xl text-cr-green"></i>
+                        <i class="fas fa-robot text-4xl text-cr-green" aria-hidden="true"></i>
                         <h3 class="text-xl font-semibold text-cr-dark mt-4">Web Automation</h3>
                         <p class="mt-2 text-cr-slate">We use powerful tools to navigate retailer sites and complete transactions securely and reliably on your behalf.</p>
                     </div>
                     <div class="animated-item p-6 bg-white rounded-lg border shadow-lg" style="transition-delay: 0.4s;">
-                        <i class="fas fa-cogs text-4xl text-cr-green"></i>
+                        <i class="fas fa-cogs text-4xl text-cr-green" aria-hidden="true"></i>
                         <h3 class="text-xl font-semibold text-cr-dark mt-4">Dynamic Probability Engine</h3>
                         <p class="mt-2 text-cr-slate">Our score is created dynamically using historical price trends and current market data to provide smart recommendations.</p>
                     </div>
@@ -237,8 +244,8 @@
 
         <section class="section py-20 bg-cr-dark text-white">
             <div class="text-center">
-                <p class="animated-item text-base text-gray-400">© Made by Consumer Reports Capstone Team 2025</p>
-                <p class="mt-2 text-sm text-gray-500">A Capstone Project for the MHCI Program</p>
+                <p class="animated-item text-base text-gray-300">© Made by Consumer Reports Capstone Team 2025</p>
+                <p class="mt-2 text-sm text-gray-400">A Capstone Project for the MHCI Program</p>
             </div>
         </section>
 
@@ -264,14 +271,16 @@
             const mobileMenu = document.getElementById('mobile-menu');
             if (menuBtn && mobileMenu) {
                 menuBtn.addEventListener('click', () => {
-                mobileMenu.classList.toggle('hidden');
+                const isHidden = mobileMenu.classList.toggle('hidden');
                 const icon = menuBtn.querySelector('i');
-                if (mobileMenu.classList.contains('hidden')) {
+                if (isHidden) {
                     icon.classList.remove('fa-times');
                     icon.classList.add('fa-bars');
+                    menuBtn.setAttribute('aria-expanded', 'false');
                 } else {
                     icon.classList.remove('fa-bars');
                     icon.classList.add('fa-times');
+                    menuBtn.setAttribute('aria-expanded', 'true');
                 }
                 });
             }
