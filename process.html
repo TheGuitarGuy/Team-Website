@@ -106,7 +106,9 @@
     <header class="border-b border-gray-200 bg-white">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
-                <a href="index.html" class="text-2xl font-bold text-cr-dark">Best Time to Buy <span class="text-cr-green">2.0</span></a>
+                <div class="flex items-center">
+                    <a href="index.html" class="text-2xl font-bold text-cr-dark">Best Time to Buy <span class="text-cr-green">2.0</span></a>
+                </div>
                 <nav class="hidden md:flex space-x-8">
                     <a href="solution.html" class="text-gray-500 hover:text-cr-green">Our Solution</a>
                     <a href="team.html" class="text-gray-500 hover:text-cr-green">The Team</a>
@@ -129,7 +131,13 @@
     <main class="md:h-screen md:overflow-y-scroll">
 
         <section class="section flex flex-col items-center justify-center min-h-screen py-20 px-4 sm:px-8 text-center">
-            <h1 class="animated-item text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight mb-6">Agentic AI for the Consumer</h1>
+            <img src="assets/cr_logo.png" alt="Consumer Reports Logo" class="animated-item h-20 mb-8 rounded-md">
+            <h1 class="animated-item text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight mb-6">Agentic AI for Consumer Empowerment</h1>
+            <p class="animated-item max-w-4xl text-lg sm:text-xl text-cr-slate">This project explores how agentic AI, a technology capable of acting autonomously on behalf of users, can be leveraged to address critical consumer pain points and enhance the trusted advocacy of Consumer Reports.</p>
+        </section>
+
+        <section class="section flex flex-col items-center justify-center min-h-screen py-20 px-4 sm:px-8 text-center">
+            <h2 class="animated-item text-4xl sm:text-5xl font-bold mb-6">Our Objective</h2>
             <p class="animated-item max-w-4xl text-lg sm:text-xl text-cr-slate">Our story begins with a challenge from Consumer Reports, an organization with a ninety-year history of fighting for consumers. They asked our team to find the most valuable problem agentic AI could solve within their ecosystem.</p>
         </section>
 
@@ -379,20 +387,7 @@
             <p class="animated-item max-w-5xl text-lg sm:text-xl text-cr-slate">We discovered a fundamental split in how people shop. A <strong>need</strong> is urgent, your microwave just broke. A <strong>want</strong> can wait, you’re considering an air fryer but you’ll buy when the timing and price are right. That “waiting to buy” space, where 93% of our participants lived, represents a massive, unmet need.</p>
             <img src="assets/want_need.png" alt="Diagram showing the want versus need spectrum for consumer purchases." class="animated-item h-60 sm:h-72 md:h-80 mt-8 object-contain">
         </section>
-<!-- 
-        <section class="section flex flex-col items-center justify-center min-h-screen py-20 px-4 sm:px-8 text-center">
-            <blockquote class="animated-item text-3xl md:text-4xl font-bold leading-tight max-w-6xl text-cr-dark mt-4 relative">
-                “What’s the lowest price this item will drop to, and when will that be?”
-            </blockquote>
-            <p class="animated-item max-w-5xl text-lg sm:text-xl text-cr-slate my-8">They ask this because they need to decide whether waiting is worth it, but the manual process of finding an answer is frustrating, inconsistent, and easy to forget.</p>
-            <blockquote class="animated-item bg-cr-light-gray p-8 rounded-lg text-xl sm:text-3xl italic text-cr-dark relative max-w-6xl mx-auto shadow-lg">
-                <span class="absolute top-0 left-0 -mt-4 -ml-4 text-8xl text-cr-green opacity-20">“</span>
-                I continue looking and looking and looking, and I usually forget to keep looking. And then one day I remember, and it’s expensive again.
-                <footer class="mt-4 text-base not-italic text-cr-slate">— Wizard of Oz Testing (Participant 9)</footer>
-            </blockquote>
-        </section> -->
-
-        <section class="section flex flex-col items-center justify-center min-h-screen py-20 px-4 sm:px-8 text-center bg-white">
+<section class="section flex flex-col items-center justify-center min-h-screen py-20 px-4 sm:px-8 text-center bg-white">
             <div class="max-w-5xl w-full">
                 <div class="animated-item text-cr-green mb-4"><i class="fas fa-hat-wizard fa-3x"></i></div>
                 <h2 class="animated-item text-3xl sm:text-4xl md:text-5xl font-bold mb-4">Testing Our Agent with Real People</h2>
@@ -475,7 +470,7 @@
                 <p class="animated-item text-lg sm:text-xl text-cr-slate mb-8">The idea of an automated purchase is scary. Users need to feel like they hold the keys, even when they've delegated the task.</p>
                 <div class="grid md:grid-cols-2 gap-8 text-left items-center">
                     <div class="animated-item bg-white p-8 rounded-lg shadow-md">
-                        <blockquote class="text-lg italic text-cr-dark leading-relaxed">"I want to feel in control of my finances, but I worry about forgetting that I’ve authorized a future purchase... I want transparency in prices, reminders that the agent is watching for me, the option to confirm before purchase, and the option to cancel."</blockquote>
+                        <blockquote class="text-lg italic text-cr-dark leading-relaxed">"I’d expect to be given the option of buying it now, changing my target price, or cancelling the order."</blockquote>
                     </div>
                     <div class="animated-item">
                         <h4 class="text-2xl font-bold mb-4">Design Implications:</h4>
@@ -594,35 +589,26 @@
         </section>
 
         <section class="section flex flex-col items-center justify-center min-h-screen py-20 px-4 sm:px-8 text-center">
-            <div class="animated-item w-full max-w-3xl text-center">
-                <div class="inline-block w-16 h-16 bg-cr-green rounded-full flex items-center justify-center text-white font-bold text-2xl z-10 mx-auto">1</div>
+            <div class="animated-item w-full max-w-3xl text-center relative">
+                <div class="step-circle relative inline-block w-16 h-16 bg-cr-green rounded-full flex items-center justify-center text-white font-bold text-2xl z-10 mx-auto">1</div>
                 <h3 class="font-bold text-3xl mt-6">Start with small appliances.</h3>
                 <p class="text-cr-slate text-xl mt-2">This is an area with great data and lower stakes, perfect for building user trust.</p>
-                <div class="mt-8 bg-cr-light-gray rounded-lg h-64 flex items-center justify-center">
-                    <i class="fas fa-blender text-6xl text-cr-slate"></i>
-                </div>
             </div>
         </section>
-
+        
         <section class="section flex flex-col items-center justify-center min-h-screen py-20 px-4 sm:px-8 text-center">
-            <div class="animated-item w-full max-w-3xl text-center">
-                <div class="inline-block w-16 h-16 bg-cr-green rounded-full flex items-center justify-center text-white font-bold text-2xl z-10 mx-auto">2</div>
+            <div class="animated-item w-full max-w-3xl text-center relative">
+                 <div class="step-circle relative inline-block w-16 h-16 bg-cr-green rounded-full flex items-center justify-center text-white font-bold text-2xl z-10 mx-auto">2</div>
                 <h3 class="font-bold text-3xl mt-6">Expand to larger purchases.</h3>
                 <p class="text-cr-slate text-xl mt-2">As trust grows, move to items like washing machines and TVs, where savings are even more significant.</p>
-                <div class="mt-8 bg-cr-light-gray rounded-lg h-64 flex items-center justify-center">
-                    <i class="fas fa-tv text-6xl text-cr-slate"></i>
-                </div>
             </div>
         </section>
-
+        
         <section class="section flex flex-col items-center justify-center min-h-screen py-20 px-4 sm:px-8 text-center">
-            <div class="animated-item w-full max-w-3xl text-center">
-                <div class="inline-block w-16 h-16 bg-cr-green rounded-full flex items-center justify-center text-white font-bold text-2xl z-10 mx-auto">3</div>
+            <div class="animated-item w-full max-w-3xl text-center relative">
+                 <div class="step-circle step-circle-last relative inline-block w-16 h-16 bg-cr-green rounded-full flex items-center justify-center text-white font-bold text-2xl z-10 mx-auto">3</div>
                 <h3 class="font-bold text-3xl mt-6">Evolve into full-journey support.</h3>
                 <p class="text-cr-slate text-xl mt-2">The ultimate goal is an agent that helps with proactive personalization, warranties, and even returns.</p>
-                <div class="mt-8 bg-cr-light-gray rounded-lg h-64 flex items-center justify-center">
-                    <i class="fas fa-shield-alt text-6xl text-cr-slate"></i>
-                </div>
             </div>
         </section>
 
