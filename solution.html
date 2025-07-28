@@ -12,8 +12,8 @@
       theme: {
         extend: {
           colors: {
-            'cr-green': '#00B96F',
-            'cr-green-dark': '#00875A',
+            'cr-green': '#00875A', // The lighter green from this page's original config
+            'cr-green-dark': '#00875A', // This can remain, but isn't used for new contrast fixes
             'cr-dark': '#111827',
             'cr-slate': '#4A5568',
             'cr-light-gray': '#F3F4F6',
@@ -81,6 +81,19 @@
             outline: 2px solid #00B96F; /* cr-green */
             outline-offset: 2px;
         }
+
+        /* Utility class for screen readers */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border-width: 0;
+        }
     </style>
 </head>
 <body class="bg-white text-cr-dark">
@@ -92,8 +105,8 @@
                 <a href="index.html" class="text-2xl font-bold text-cr-dark" aria-label="Best Time to Buy 2.0 - Home">Best Time to Buy <span class="text-cr-green">2.0</span></a>
                 <nav class="hidden md:flex space-x-8" aria-label="Main navigation">
                     <a href="solution.html" class="text-cr-green font-semibold" aria-current="page">Our Solution</a>
-                    <a href="team.html" class="text-gray-500 hover:text-cr-green">The Team</a>
-                    <a href="process.html" class="text-gray-500 hover:text-cr-green">Our Process</a>
+                    <a href="team.html" class="text-cr-dark hover:text-cr-green">The Team</a>
+                    <a href="process.html" class="text-cr-dark hover:text-cr-green">Our Process</a>
                 </nav>
                 <div class="md:hidden">
                     <button id="menu-btn" class="text-cr-dark focus:outline-none" aria-label="Open mobile menu" aria-expanded="false" aria-controls="mobile-menu">
@@ -104,8 +117,8 @@
         </div>
         <div id="mobile-menu" class="hidden md:hidden" role="menu" aria-label="Mobile navigation">
             <a href="solution.html" class="block text-center py-4 text-cr-green font-semibold hover:bg-cr-green hover:text-white transition-colors duration-300" role="menuitem">Our Solution</a>
-            <a href="team.html" class="block text-center py-4 text-gray-500 hover:bg-cr-green hover:text-white transition-colors duration-300" role="menuitem">The Team</a>
-            <a href="process.html" class="block text-center py-4 text-gray-500 hover:bg-cr-green hover:text-white transition-colors duration-300" role="menuitem">Our Process</a>
+            <a href="team.html" class="block text-center py-4 text-cr-dark hover:bg-cr-green hover:text-white transition-colors duration-300" role="menuitem">The Team</a>
+            <a href="process.html" class="block text-center py-4 text-cr-dark hover:bg-cr-green hover:text-white transition-colors duration-300" role="menuitem">Our Process</a>
         </div>
     </header>
 
@@ -138,7 +151,7 @@
         <section class="section px-8 py-20 bg-cr-light-gray">
             <div class="container mx-auto grid md:grid-cols-2 gap-12 lg:gap-24 items-center">
                 <div class="animated-item mb-12 md:mb-0">
-                    <span class="inline-block bg-cr-green/10 text-cr-green font-semibold px-3 py-1 rounded-full mb-4">Your Shopping Companion</span>
+                    <span class="inline-block bg-cr-green/10 text-cr-dark font-semibold px-3 py-1 rounded-full mb-4">Your Shopping Companion</span>
                     <h2 class="text-4xl sm:text-5xl font-bold text-cr-dark">From Discovery to Purchase</h2>
                     <p class="mt-4 text-lg sm:text-xl text-cr-slate">Find a product you love, and let our agent take over. We'll help you find the best time to buy, so you can make a confident decision.</p>
                 </div>
@@ -151,7 +164,7 @@
         <section class="section px-8 py-20">
             <div class="container mx-auto grid md:grid-cols-2 gap-12 lg:gap-24 items-center">
                  <div class="animated-item md:col-start-2 mb-12 md:mb-0">
-                    <span class="inline-block bg-cr-green/10 text-cr-green font-semibold px-3 py-1 rounded-full mb-4">Real-Time Guidance</span>
+                    <span class="inline-block bg-cr-green/10 text-cr-dark font-semibold px-3 py-1 rounded-full mb-4">Real-Time Guidance</span>
                     <h2 class="text-4xl sm:text-5xl font-bold text-cr-dark">Set a Target, We'll Handle the Rest</h2>
                     <p class="mt-4 text-lg sm:text-xl text-cr-slate">Our agent monitors prices in real-time and provides data-driven targets, while still allowing for full customization.</p>
                 </div>
@@ -164,7 +177,7 @@
         <section class="section px-8 py-20 bg-cr-light-gray">
             <div class="container mx-auto grid md:grid-cols-2 gap-12 lg:gap-24 items-center">
                 <div class="animated-item mb-12 md:mb-0">
-                    <span class="inline-block bg-cr-green/10 text-cr-green font-semibold px-3 py-1 rounded-full mb-4">User Control</span>
+                    <span class="inline-block bg-cr-green/10 text-cr-dark font-semibold px-3 py-1 rounded-full mb-4">User Control</span>
                     <h2 class="text-4xl sm:text-5xl font-bold text-cr-dark">You're Always in the Driver's Seat</h2>
                     <p class="mt-4 text-lg sm:text-xl text-cr-slate">The choice to "Buy Automatically" or "Notify Me to Confirm" ensures you have the final say, building confidence and trust.</p>
                 </div>
@@ -177,7 +190,7 @@
         <section class="section px-8 py-20">
             <div class="container mx-auto grid md:grid-cols-2 gap-12 lg:gap-24 items-center">
                  <div class="animated-item md:col-start-2 mb-12 md:mb-0">
-                    <span class="inline-block bg-cr-green/10 text-cr-green font-semibold px-3 py-1 rounded-full mb-4">Smart Adjustments</span>
+                    <span class="inline-block bg-cr-green/10 text-cr-dark font-semibold px-3 py-1 rounded-full mb-4">Smart Adjustments</span>
                     <h2 class="text-4xl sm:text-5xl font-bold text-cr-dark">Adapts to Market Changes</h2>
                     <p class="mt-4 text-lg sm:text-xl text-cr-slate">If the likelihood of a price drop gets low, the agent will recommend adjustments to your target to improve your chances of success.</p>
                 </div>
@@ -190,7 +203,7 @@
         <section class="section px-8 py-20 bg-cr-light-gray">
             <div class="container mx-auto grid md:grid-cols-2 gap-12 lg:gap-24 items-center">
                 <div class="animated-item mb-12 md:mb-0">
-                    <span class="inline-block bg-cr-green/10 text-cr-green font-semibold px-3 py-1 rounded-full mb-4">Seamless Experience</span>
+                    <span class="inline-block bg-cr-green/10 text-cr-dark font-semibold px-3 py-1 rounded-full mb-4">Seamless Experience</span>
                     <h2 class="text-4xl sm:text-5xl font-bold text-cr-dark">We'll Buy, You Do Anything Else</h2>
                     <p class="mt-4 text-lg sm:text-xl text-cr-slate">Once the purchase is made, you get instant confirmation. The agent keeps you in the loop, so you always know your order's status.</p>
                 </div>
@@ -203,7 +216,7 @@
         <section class="section px-8 py-20">
             <div class="container mx-auto grid md:grid-cols-2 gap-12 lg:gap-24 items-center">
                 <div class="animated-item md:col-start-2 mb-12 md:mb-0">
-                    <span class="inline-block bg-cr-green/10 text-cr-green font-semibold px-3 py-1 rounded-full mb-4">Full Journey Support</span>
+                    <span class="inline-block bg-cr-green/10 text-cr-dark font-semibold px-3 py-1 rounded-full mb-4">Full Journey Support</span>
                     <h2 class="text-4xl sm:text-5xl font-bold text-cr-dark">Post-Purchase Peace of Mind</h2>
                     <p class="mt-4 text-lg sm:text-xl text-cr-slate">The agent stores warranty details for future use, enabling recall alerts or repair guides, turning a transaction into a long-term relationship.</p>
                 </div>
@@ -224,17 +237,17 @@
                 
                 <div class="mt-16 grid md:grid-cols-3 gap-8">
                     <div class="animated-item p-6 bg-white rounded-lg border shadow-lg" style="transition-delay: 0.2s;">
-                        <i class="fas fa-database text-4xl text-cr-green" aria-hidden="true"></i>
+                        <i class="fas fa-database text-4xl text-cr-dark" aria-hidden="true"></i>
                         <h3 class="text-xl font-semibold text-cr-dark mt-4">Robust Price Data</h3>
                         <p class="mt-2 text-cr-slate">We partner with best-in-class services for vast amounts of data, or build this capability internally over time.</p>
                     </div>
                     <div class="animated-item p-6 bg-white rounded-lg border shadow-lg" style="transition-delay: 0.3s;">
-                        <i class="fas fa-robot text-4xl text-cr-green" aria-hidden="true"></i>
+                        <i class="fas fa-robot text-4xl text-cr-dark" aria-hidden="true"></i>
                         <h3 class="text-xl font-semibold text-cr-dark mt-4">Web Automation</h3>
                         <p class="mt-2 text-cr-slate">We use powerful tools to navigate retailer sites and complete transactions securely and reliably on your behalf.</p>
                     </div>
                     <div class="animated-item p-6 bg-white rounded-lg border shadow-lg" style="transition-delay: 0.4s;">
-                        <i class="fas fa-cogs text-4xl text-cr-green" aria-hidden="true"></i>
+                        <i class="fas fa-cogs text-4xl text-cr-dark" aria-hidden="true"></i>
                         <h3 class="text-xl font-semibold text-cr-dark mt-4">Dynamic Probability Engine</h3>
                         <p class="mt-2 text-cr-slate">Our score is created dynamically using historical price trends and current market data to provide smart recommendations.</p>
                     </div>
@@ -245,7 +258,7 @@
         <section class="section py-20 bg-cr-dark text-white">
             <div class="text-center">
                 <p class="animated-item text-base text-gray-300">© Made by Consumer Reports Capstone Team 2025</p>
-                <p class="mt-2 text-sm text-gray-400">A Capstone Project for the MHCI Program</p>
+                <p class="mt-2 text-sm text-gray-300">A Capstone Project for the MHCI Program</p>
             </div>
         </section>
 

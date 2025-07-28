@@ -14,8 +14,8 @@
             theme: {
                 extend: {
                     colors: {
-                        'cr-green': '#00875A',
-                        'cr-green-dark': '#00875A',
+                        'cr-green': '#00875A', // This darker green provides good contrast
+                        'cr-green-dark': '#00875A', // Duplicated, but still good
                         'cr-dark': '#111827',
                         'cr-slate': '#4A5568',
                         'cr-light-gray': '#F3F4F6',
@@ -99,36 +99,57 @@
             animation-delay: 0.4s;
             transform: scale(0);
         }
+
+        /* Basic focus outline for accessibility */
+        :focus-visible {
+            outline: 2px solid #00875A; /* cr-green */
+            outline-offset: 2px;
+        }
+
+        /* Utility class for screen readers */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border-width: 0;
+        }
     </style>
 </head>
 
 <body class="bg-white text-cr-dark">
-    <header class="border-b border-gray-200 bg-white">
+    <a href="#main-content" class="sr-only focus:not-sr-only absolute left-0 top-0 bg-cr-green text-white p-3 rounded-br-lg z-50">Skip to main content</a>
+
+    <header class="border-b border-gray-200 bg-white sticky top-0 backdrop-blur-lg z-30">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
                 <div class="flex items-center">
-                    <a href="index.html" class="text-2xl font-bold text-cr-dark">Best Time to Buy <span class="text-cr-green">2.0</span></a>
+                    <a href="index.html" class="text-2xl font-bold text-cr-dark" aria-label="Best Time to Buy 2.0 - Home">Best Time to Buy <span class="text-cr-green">2.0</span></a>
                 </div>
-                <nav class="hidden md:flex space-x-8">
-                    <a href="solution.html" class="text-gray-500 hover:text-cr-green">Our Solution</a>
-                    <a href="team.html" class="text-gray-500 hover:text-cr-green">The Team</a>
-                    <a href="process.html" class="text-cr-green font-semibold">Our Process</a>
+                <nav class="hidden md:flex space-x-8" aria-label="Main navigation">
+                    <a href="solution.html" class="text-cr-dark hover:text-cr-green">Our Solution</a>
+                    <a href="team.html" class="text-cr-dark hover:text-cr-green">The Team</a>
+                    <a href="process.html" class="text-cr-green font-semibold" aria-current="page">Our Process</a>
                 </nav>
                 <div class="md:hidden">
-                    <button id="menu-btn" class="text-cr-dark focus:outline-none">
+                    <button id="menu-btn" class="text-cr-dark focus:outline-none" aria-label="Open mobile menu" aria-expanded="false" aria-controls="mobile-menu">
                         <i class="fas fa-bars fa-lg"></i>
                     </button>
                 </div>
             </div>
         </div>
-        <div id="mobile-menu" class="hidden md:hidden">
-            <a href="solution.html" class="block text-center py-4 text-gray-500 hover:bg-cr-green hover:text-white transition-colors duration-300">Our Solution</a>
-            <a href="team.html" class="block text-center py-4 text-gray-500 hover:bg-cr-green hover:text-white transition-colors duration-300">The Team</a>
-            <a href="process.html" class="block text-center py-4 text-cr-green font-semibold hover:bg-cr-green hover:text-white transition-colors duration-300">Our Process</a>
+        <div id="mobile-menu" class="hidden md:hidden" role="menu" aria-label="Mobile navigation">
+            <a href="solution.html" class="block text-center py-4 text-cr-dark hover:bg-cr-green hover:text-white transition-colors duration-300" role="menuitem">Our Solution</a>
+            <a href="team.html" class="block text-center py-4 text-cr-dark hover:bg-cr-green hover:text-white transition-colors duration-300" role="menuitem">The Team</a>
+            <a href="process.html" class="block text-center py-4 text-cr-green font-semibold hover:bg-cr-green hover:text-white transition-colors duration-300" role="menuitem">Our Process</a>
         </div>
     </header>
 
-    <main class="md:h-screen md:overflow-y-scroll">
+    <main id="main-content" class="md:h-screen md:overflow-y-scroll">
 
         <section class="section flex flex-col items-center justify-center min-h-screen py-20 px-4 sm:px-8 text-center">
             <img src="assets/cr_logo.png" alt="Consumer Reports Logo" class="animated-item h-20 mb-8 rounded-md">
@@ -144,12 +165,12 @@
         <section class="section flex flex-col items-center justify-center min-h-screen py-20 px-4 sm:px-8 text-center">
             <h2 class="animated-item text-4xl sm:text-5xl font-bold mb-6">Our Journey Started on the Ground</h2>
             <p class="animated-item max-w-5xl text-lg sm:text-xl text-cr-slate">To discover the right answer, we left the office. We conducted 12 preliminary in-store intercept interviews at retailers like Best Buy and Home Depot and 15 interviews with consumers from our networks.</p>
-            <img src="assets/home_depot.png" alt="Team member conducting research in a retail store" class="animated-item mt-10 rounded-lg shadow-lg w-auto max-h-[50vh] md:max-h-65vh transition-transform duration-300 hover:scale-105">
+            <img src="assets/home_depot.png" alt="Team member conducting research in a retail store at Home Depot" class="animated-item mt-10 rounded-lg shadow-lg w-auto max-h-[50vh] md:max-h-65vh transition-transform duration-300 hover:scale-105">
         </section>
 
         <section class="section flex flex-col items-center justify-center min-h-screen py-20 px-4 sm:px-8 text-center bg-cr-light-gray">
             <div class="max-w-5xl w-full">
-                <div class="animated-item text-cr-green mb-4"><i class="fas fa-box-open fa-3x"></i></div>
+                <div class="animated-item text-cr-green mb-4"><i class="fas fa-box-open fa-3x" aria-hidden="true"></i></div>
                 <p class="animated-item text-lg font-semibold text-cr-green uppercase tracking-wider mb-2">Finding 1</p>
                 <h3 class="animated-item text-3xl sm:text-4xl md:text-5xl font-bold mb-4">The Burden of Ownership</h3>
                 <p class="animated-item text-lg sm:text-xl text-cr-slate mb-8">When it comes to product upkeep, consumers are left to manage the complexity alone, making ownership feel like a burden rather than a benefit.</p>
@@ -172,7 +193,7 @@
 
         <section class="section flex flex-col items-center justify-center min-h-screen py-20 px-4 sm:px-8 text-center bg-cr-light-gray">
             <div class="max-w-5xl w-full">
-                <div class="animated-item text-cr-green mb-4"><i class="fas fa-people-arrows fa-3x"></i></div>
+                <div class="animated-item text-cr-green mb-4"><i class="fas fa-people-arrows fa-3x" aria-hidden="true"></i></div>
                 <p class="animated-item text-lg font-semibold text-cr-green uppercase tracking-wider mb-2">Finding 2</p>
                 <h3 class="animated-item text-3xl sm:text-4xl md:text-5xl font-bold mb-4">Decision-Making is Undersupported</h3>
                 <p class="animated-item text-lg sm:text-xl text-cr-slate mb-8">Large purchases demand emotionally charged trade-offs, yet consumers often lack credible, tailored guidance.</p>
@@ -195,7 +216,7 @@
 
         <section class="section flex flex-col items-center justify-center min-h-screen py-20 px-4 sm:px-8 text-center bg-cr-light-gray">
             <div class="max-w-5xl w-full">
-                <div class="animated-item text-cr-green mb-4"><i class="fas fa-magnifying-glass-chart fa-3x"></i></div>
+                <div class="animated-item text-cr-green mb-4"><i class="fas fa-magnifying-glass-chart fa-3x" aria-hidden="true"></i></div>
                 <p class="animated-item text-lg font-semibold text-cr-green uppercase tracking-wider mb-2">Finding 3</p>
                 <h3 class="animated-item text-3xl sm:text-4xl md:text-5xl font-bold mb-4">Information is Everywhere, But Trust is Scarce</h3>
                 <p class="animated-item text-lg sm:text-xl text-cr-slate mb-8">Consumers are inundated with sources but struggle to find information they can truly trust.</p>
@@ -218,7 +239,7 @@
 
         <section class="section flex flex-col items-center justify-center min-h-screen py-20 px-4 sm:px-8 text-center bg-cr-light-gray">
             <div class="max-w-5xl w-full">
-                <div class="animated-item text-cr-green mb-4"><i class="fas fa-handshake-angle fa-3x"></i></div>
+                <div class="animated-item text-cr-green mb-4"><i class="fas fa-handshake-angle fa-3x" aria-hidden="true"></i></div>
                 <p class="animated-item text-lg font-semibold text-cr-green uppercase tracking-wider mb-2">Finding 4</p>
                 <h3 class="animated-item text-3xl sm:text-4xl md:text-5xl font-bold mb-4">Convenience Wins, But Only If It Feels Human</h3>
                 <p class="animated-item text-lg sm:text-xl text-cr-slate mb-8">People crave seamless experiences, but only when grounded in a layer of human reassurance and trust.</p>
@@ -241,7 +262,7 @@
 
         <section class="section flex flex-col items-center justify-center min-h-screen py-20 px-4 sm:px-8 text-center bg-cr-light-gray">
             <div class="max-w-5xl w-full">
-                <div class="animated-item text-cr-green mb-4"><i class="fas fa-heart-crack fa-3x"></i></div>
+                <div class="animated-item text-cr-green mb-4"><i class="fas fa-heart-crack fa-3x" aria-hidden="true"></i></div>
                 <p class="animated-item text-lg font-semibold text-cr-green uppercase tracking-wider mb-2">Finding 5</p>
                 <h3 class="animated-item text-3xl sm:text-4xl md:text-5xl font-bold mb-4">Digital Tools Fail to Meet Emotional Needs</h3>
                 <p class="animated-item text-lg sm:text-xl text-cr-slate mb-8">Current tools lack the emotional intelligence and trust to fully support complex, high-stakes purchases.</p>
@@ -264,7 +285,7 @@
 
         <section class="section flex flex-col items-center justify-center min-h-screen py-20 px-4 sm:px-8 text-center bg-cr-light-gray">
             <div class="max-w-5xl w-full">
-                <div class="animated-item text-cr-green mb-4"><i class="fas fa-robot fa-3x"></i></div>
+                <div class="animated-item text-cr-green mb-4"><i class="fas fa-robot fa-3x" aria-hidden="true"></i></div>
                 <p class="animated-item text-lg font-semibold text-cr-green uppercase tracking-wider mb-2">Finding 6</p>
                 <h3 class="animated-item text-3xl sm:text-4xl md:text-5xl font-bold mb-4">AI is Underutilized in Personal Life</h3>
                 <p class="animated-item text-lg sm:text-xl text-cr-slate mb-8">AI is seen as productive for work, but lacks the trust and intuitive integration for high-friction personal decisions.</p>
@@ -288,10 +309,10 @@
         <section class="section flex flex-col items-center justify-center min-h-screen py-20 px-4 sm:px-8 bg-white">
             <div class="max-w-6xl w-full flex flex-col md:grid md:grid-cols-3 gap-8 md:gap-16 items-center">
                 <div class="animated-item order-last md:order-first mt-10 md:mt-0 md:col-span-2 flex items-center justify-center">
-                    <img src="assets/agentic.png" alt="Chart showing the differences between assistive, autonomous, and agentic systems">
+                    <img src="assets/agentic.png" alt="Chart showing the differences between assistive, autonomous, and agentic systems, with agentic AI defined as proactive, autonomous, and goal-oriented." aria-label="Visual explanation of Agentic AI capabilities">
                 </div>
                 <div class="text-left">
-                    <div class="animated-item text-cr-green mb-4"><i class="fas fa-brain fa-3x"></i></div>
+                    <div class="animated-item text-cr-green mb-4"><i class="fas fa-brain fa-3x" aria-hidden="true"></i></div>
                     <h2 class="animated-item text-3xl sm:text-4xl md:text-5xl font-bold mb-4">Understanding Agentic AI</h2>
                     <p class="animated-item text-lg sm:text-xl text-cr-slate">
                         Unlike traditional AI that simply answers questions, agentic AI can perform tasks and take actions on a user's behalf. It acts as a proactive, autonomous partner, capable of planning, executing multi-step operations, and achieving goals with minimal human intervention.
@@ -303,22 +324,22 @@
         <section class="section flex flex-col items-center justify-center min-h-screen py-20 px-4 sm:px-8 bg-white">
             <div class="max-w-6xl w-full grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-center">
                 <div class="text-left">
-                    <div class="animated-item text-cr-green mb-4"><i class="fas fa-lightbulb fa-3x"></i></div>
+                    <div class="animated-item text-cr-green mb-4"><i class="fas fa-lightbulb fa-3x" aria-hidden="true"></i></div>
                     <h2 class="animated-item text-3xl sm:text-4xl md:text-5xl font-bold mb-4">Matching Capabilities with Feasibility</h2>
                     <p class="animated-item text-lg sm:text-xl text-cr-slate">
                         With a clear understanding of consumer needs, our next step was to map these insights to the capabilities of agentic AI, ensuring our proposed solution was not only valuable but also technically feasible.
                     </p>
                 </div>
                 <div class="animated-item mt-10 md:mt-0 h-80 flex items-center justify-center">
-                    <img src="assets/venn_1.png" alt="">
+                    <img src="assets/venn_1.png" alt="Venn diagram illustrating the intersection of consumer needs, agentic AI capabilities, and market feasibility." aria-label="Conceptual diagram of solution fit">
                 </div>
             </div>
         </section>
 
-        <section class="section flex flex-col items-center justify-center min-h-screen py-20 px-4 sm:px-8 bg-cr-light-gray text-center">
+        <section class="section flex flex-col items-center justify-center min-h-screen py-20 px-4 sm:px-8 text-center bg-cr-light-gray">
             <div class="max-w-4xl w-full">
                 <div class="animated-item text-cr-green mb-4">
-                    <i class="fas fa-bullseye fa-3x"></i>
+                    <i class="fas fa-bullseye fa-3x" aria-hidden="true"></i>
                 </div>
                 <h2 class="animated-item text-3xl sm:text-4xl md:text-5xl font-bold mb-6">
                     Validating an AI Buying Agent
@@ -335,7 +356,7 @@
         <section id="survey-section" class="section flex flex-col items-center justify-center min-h-screen py-20 px-4 sm:px-8 bg-cr-light-gray">
             <div class="max-w-6xl w-full grid grid-cols-1 md:grid-cols-5 gap-8 md:gap-16 items-center">
                 <div class="md:col-span-3 text-left">
-                    <div class="animated-item text-cr-green mb-4"><i class="fas fa-clipboard-check fa-3x"></i></div>
+                    <div class="animated-item text-cr-green mb-4"><i class="fas fa-clipboard-check fa-3x" aria-hidden="true"></i></div>
                     <h2 class="animated-item text-3xl sm:text-4xl md:text-5xl font-bold mb-4">Are People Willing to Wait?</h2>
                     <p class="animated-item text-lg sm:text-xl text-cr-slate">
                         To validate our qualitative findings, we surveyed a wider audience ahead of Amazon's Prime Day. The results were overwhelming: the vast majority of consumers are actively considering a purchase, especially small applicances such as air fryers, coffee makers, and rice cookers.
@@ -364,7 +385,7 @@
                 <div class="grid md:grid-cols-2 gap-x-8 gap-y-12 text-left">
                     <div class="animated-item">
                         <div class="flex items-center mb-4">
-                            <i class="fas fa-piggy-bank text-3xl text-cr-green mr-4"></i>
+                            <i class="fas fa-piggy-bank text-3xl text-cr-green mr-4" aria-hidden="true"></i>
                             <h4 class="text-2xl font-bold">To Find a Good Deal</h4>
                         </div>
                         <p class="text-cr-slate mb-4">The primary driver is financial. Shoppers are actively looking for sales to justify the purchase.</p>
@@ -372,7 +393,7 @@
                     </div>
                     <div class="animated-item">
                         <div class="flex items-center mb-4">
-                            <i class="fas fa-arrow-up-from-bracket text-3xl text-cr-green mr-4"></i>
+                            <i class="fas fa-arrow-up-from-bracket text-3xl text-cr-green mr-4" aria-hidden="true"></i>
                             <h4 class="text-2xl font-bold">To Upgrade an Existing Item</h4>
                         </div>
                         <p class="text-cr-slate mb-4">Many have a product that works, but isn't working well, creating a slow-burning need.</p>
@@ -384,25 +405,25 @@
 
         <section class="section flex flex-col items-center justify-center min-h-screen py-20 px-4 sm:px-8 text-center bg-cr-light-gray">
             <h2 class="animated-item text-3xl sm:text-4xl md:text-5xl font-bold mb-4">The Want vs. Need Spectrum</h2>
-            <p class="animated-item max-w-5xl text-lg sm:text-xl text-cr-slate">We discovered a fundamental split in how people shop. A <strong>need</strong> is urgent, your microwave just broke. A <strong>want</strong> can wait, you’re considering an air fryer but you’ll buy when the timing and price are right. That “waiting to buy” space, where 93% of our participants lived, represents a massive, unmet need.</p>
-            <img src="assets/want_need.png" alt="Diagram showing the want versus need spectrum for consumer purchases." class="animated-item h-60 sm:h-72 md:h-80 mt-8 object-contain">
+            <p class="animated-item max-w-5xl text-lg sm:text-xl text-cr-slate">We discovered a fundamental split in how people shop. A **need** is urgent, your microwave just broke. A **want** can wait, you’re considering an air fryer but you’ll buy when the timing and price are right. That “waiting to buy” space, where 93% of our participants lived, represents a massive, unmet need.</p>
+            <img src="assets/want_need.png" alt="Diagram illustrating the 'want versus need' spectrum of purchases, showing that 93% of survey participants fall into the 'want' category, indicating a large market for deferred purchases." class="animated-item h-60 sm:h-72 md:h-80 mt-8 object-contain">
         </section>
-<section class="section flex flex-col items-center justify-center min-h-screen py-20 px-4 sm:px-8 text-center bg-white">
+        <section class="section flex flex-col items-center justify-center min-h-screen py-20 px-4 sm:px-8 text-center bg-white">
             <div class="max-w-5xl w-full">
-                <div class="animated-item text-cr-green mb-4"><i class="fas fa-hat-wizard fa-3x"></i></div>
+                <div class="animated-item text-cr-green mb-4"><i class="fas fa-hat-wizard fa-3x" aria-hidden="true"></i></div>
                 <h2 class="animated-item text-3xl sm:text-4xl md:text-5xl font-bold mb-4">Testing Our Agent with Real People</h2>
                 <p class="animated-item text-lg sm:text-xl text-cr-slate">Our early findings pointed to a powerful idea: an AI agent that buys things for you. But would anyone trust it? To find out, we ran a "Wizard of Oz" test. In 45-minute sessions, 11 participants interacted via text with what they thought was an AI. In reality, it was one of us, acting as the agent to discover the moments that build or break trust.</p>
         
                 <div class="animated-item mt-10 flex flex-col md:flex-row gap-4 sm:gap-6 justify-center">
-                    <img src="assets/wizard.JPG" alt="Guy with a drawn wizard hat looking at a laptop" class="w-full md:w-1/3 h-[400px] object-contain bg-cr-light-gray p-2 rounded-lg shadow-md">
-                    <img src="assets/ranking.jpg" alt="Photo of a person's UI ranking" class="w-full md:w-2/3 h-[400px] object-contain bg-cr-light-gray p-2 rounded-lg shadow-md">
+                    <img src="assets/wizard.JPG" alt="A person wearing a wizard hat, looking at a laptop, representing the 'Wizard of Oz' test setup." class="w-full md:w-1/3 h-[400px] object-contain bg-cr-light-gray p-2 rounded-lg shadow-md">
+                    <img src="assets/ranking.jpg" alt="A screenshot of a user interface showing a ranking or feedback system, likely used in the Wizard of Oz test." class="w-full md:w-2/3 h-[400px] object-contain bg-cr-light-gray p-2 rounded-lg shadow-md">
                 </div>
             </div>
         </section>
 
         <section class="section flex flex-col items-center justify-center min-h-screen py-20 px-4 sm:px-8 text-center bg-cr-light-gray">
             <div class="max-w-6xl w-full">
-                <div class="animated-item text-cr-green mb-4"><i class="fas fa-brain fa-3x"></i></div>
+                <div class="animated-item text-cr-green mb-4"><i class="fas fa-brain fa-3x" aria-hidden="true"></i></div>
                 <p class="animated-item text-lg font-semibold text-cr-green uppercase tracking-wider mb-2">Finding 1</p>
                 <h3 class="animated-item text-3xl sm:text-4xl md:text-5xl font-bold mb-4">Offload the Mental Load</h3>
                 <p class="animated-item text-lg sm:text-xl text-cr-slate mb-8">People don't just want to save money; they want to save the mental energy it takes to track prices.</p>
@@ -414,15 +435,15 @@
                         <h4 class="text-2xl font-bold mb-4">Design Implications:</h4>
                         <ul class="text-cr-slate space-y-4 text-lg">
                             <li class="flex items-start">
-                                <span class="text-cr-green mr-3 mt-1 flex-shrink-0"><i class="fas fa-check-circle"></i></span>
+                                <span class="text-cr-green mr-3 mt-1 flex-shrink-0"><i class="fas fa-check-circle" aria-hidden="true"></i></span>
                                 <span>Position the agent as something that "remembers to do what you're already meaning to do, and does it better."</span>
                             </li>
                             <li class="flex items-start">
-                                <span class="text-cr-green mr-3 mt-1 flex-shrink-0"><i class="fas fa-check-circle"></i></span>
+                                <span class="text-cr-green mr-3 mt-1 flex-shrink-0"><i class="fas fa-check-circle" aria-hidden="true"></i></span>
                                 <span>Proactively communicate to remind the user of the value it's providing ("I'm still watching that air fryer for you!").</span>
                             </li>
                             <li class="flex items-start">
-                                <span class="text-cr-green mr-3 mt-1 flex-shrink-0"><i class="fas fa-check-circle"></i></span>
+                                <span class="text-cr-green mr-3 mt-1 flex-shrink-0"><i class="fas fa-check-circle" aria-hidden="true"></i></span>
                                 <span>Do not focus on the fact that this is an AI feature. People don't generally care.</span>
                             </li>
                         </ul>
@@ -433,7 +454,7 @@
 
         <section class="section flex flex-col items-center justify-center min-h-screen py-20 px-4 sm:px-8 text-center bg-white">
             <div class="max-w-6xl w-full">
-                <div class="animated-item text-cr-green mb-4"><i class="fas fa-chart-line fa-3x"></i></div>
+                <div class="animated-item text-cr-green mb-4"><i class="fas fa-chart-line fa-3x" aria-hidden="true"></i></div>
                 <p class="animated-item text-lg font-semibold text-cr-green uppercase tracking-wider mb-2">Finding 2</p>
                 <h3 class="animated-item text-3xl sm:text-4xl md:text-5xl font-bold mb-4">Reassure Me With Data</h3>
                 <p class="animated-item text-lg sm:text-xl text-cr-slate mb-8">Setting a "good" price is a huge point of anxiety. Users are afraid of setting the bar too high and missing out, or too low and losing savings.</p>
@@ -442,15 +463,15 @@
                         <h4 class="text-2xl font-bold mb-4">Design Implications:</h4>
                         <ul class="text-cr-slate space-y-4 text-lg">
                             <li class="flex items-start">
-                                <span class="text-cr-green mr-3 mt-1 flex-shrink-0"><i class="fas fa-check-circle"></i></span>
+                                <span class="text-cr-green mr-3 mt-1 flex-shrink-0"><i class="fas fa-check-circle" aria-hidden="true"></i></span>
                                 <span>Provide a few data-backed recommendations for price and timeline that users can customize.</span>
                             </li>
                             <li class="flex items-start">
-                                <span class="text-cr-green mr-3 mt-1 flex-shrink-0"><i class="fas fa-check-circle"></i></span>
+                                <span class="text-cr-green mr-3 mt-1 flex-shrink-0"><i class="fas fa-check-circle" aria-hidden="true"></i></span>
                                 <span>Visualize historical price data to build trust and inform manual settings.</span>
                             </li>
                             <li class="flex items-start">
-                                <span class="text-cr-green mr-3 mt-1 flex-shrink-0"><i class="fas fa-check-circle"></i></span>
+                                <span class="text-cr-green mr-3 mt-1 flex-shrink-0"><i class="fas fa-check-circle" aria-hidden="true"></i></span>
                                 <span>Notify users if a price target becomes unrealistic, prompting them to re-evaluate their criteria.</span>
                             </li>
                         </ul>
@@ -464,7 +485,7 @@
 
         <section class="section flex flex-col items-center justify-center min-h-screen py-20 px-4 sm:px-8 text-center bg-cr-light-gray">
             <div class="max-w-6xl w-full">
-                <div class="animated-item text-cr-green mb-4"><i class="fas fa-user-lock fa-3x"></i></div>
+                <div class="animated-item text-cr-green mb-4"><i class="fas fa-user-lock fa-3x" aria-hidden="true"></i></div>
                 <p class="animated-item text-lg font-semibold text-cr-green uppercase tracking-wider mb-2">Finding 3</p>
                 <h3 class="animated-item text-3xl sm:text-4xl md:text-5xl font-bold mb-4">Keep Me In Control</h3>
                 <p class="animated-item text-lg sm:text-xl text-cr-slate mb-8">The idea of an automated purchase is scary. Users need to feel like they hold the keys, even when they've delegated the task.</p>
@@ -476,15 +497,15 @@
                         <h4 class="text-2xl font-bold mb-4">Design Implications:</h4>
                         <ul class="text-cr-slate space-y-4 text-lg">
                             <li class="flex items-start">
-                                <span class="text-cr-green mr-3 mt-1 flex-shrink-0"><i class="fas fa-check-circle"></i></span>
+                                <span class="text-cr-green mr-3 mt-1 flex-shrink-0"><i class="fas fa-check-circle" aria-hidden="true"></i></span>
                                 <span>Default to requiring user confirmation before any purchase, with a clear opt-in for full automation.</span>
                             </li>
                             <li class="flex items-start">
-                                <span class="text-cr-green mr-3 mt-1 flex-shrink-0"><i class="fas fa-check-circle"></i></span>
+                                <span class="text-cr-green mr-3 mt-1 flex-shrink-0"><i class="fas fa-check-circle" aria-hidden="true"></i></span>
                                 <span>Make order cancellation frictionless.</span>
                             </li>
                             <li class="flex items-start">
-                                <span class="text-cr-green mr-3 mt-1 flex-shrink-0"><i class="fas fa-check-circle"></i></span>
+                                <span class="text-cr-green mr-3 mt-1 flex-shrink-0"><i class="fas fa-check-circle" aria-hidden="true"></i></span>
                                 <span>Always show the "all-in" price, including taxes and shipping, before and after the purchase.</span>
                             </li>
                         </ul>
@@ -495,28 +516,28 @@
         <section class="section flex flex-col items-center justify-center min-h-screen py-20 px-4 sm:px-8 bg-white">
             <div class="max-w-6xl w-full">
                 <div class="text-center mb-12">
-                    <div class="animated-item text-cr-green mb-4"><i class="fas fa-clipboard-list fa-3x"></i></div>
+                    <div class="animated-item text-cr-green mb-4"><i class="fas fa-clipboard-list fa-3x" aria-hidden="true"></i></div>
                     <h2 class="animated-item text-3xl sm:text-4xl md:text-5xl font-bold">Consumers Need Support, but they are Skeptical of AI</h2>
                     <p class="animated-item max-w-4xl mx-auto text-lg sm:text-xl text-cr-slate mt-4">Our findings revealed a core tension: consumers crave effortless solutions but are deeply skeptical of ceding control. This meant our agent couldn't just be smart; it had to be a trusted partner.</p>
                 </div>
                 <div class="grid md:grid-cols-3 gap-8 text-left">
                     <div class="animated-item" style="transition-delay: 0.4s;">
                         <div class="flex items-center mb-3">
-                            <i class="fas fa-handshake-angle text-3xl text-cr-green mr-4"></i>
+                            <i class="fas fa-handshake-angle text-3xl text-cr-green mr-4" aria-hidden="true"></i>
                             <h3 class="text-2xl font-bold">Be an Effortless Partner</h3>
                         </div>
                         <p class="text-cr-slate">The agent must simplify complexity, from decision-making to long-term ownership, without adding new burdens.</p>
                     </div>
                     <div class="animated-item" style="transition-delay: 0.5s;">
                         <div class="flex items-center mb-3">
-                            <i class="fas fa-shield-halved text-3xl text-cr-green mr-4"></i>
+                            <i class="fas fa-shield-halved text-3xl text-cr-green mr-4" aria-hidden="true"></i>
                             <h3 class="text-2xl font-bold">Build on Trust</h3>
                         </div>
                         <p class="text-cr-slate">Every recommendation and action must be transparent, credible, and grounded in the user's best interest, not a black box.</p>
                     </div>
                     <div class="animated-item" style="transition-delay: 0.6s;">
                         <div class="flex items-center mb-3">
-                            <i class="fas fa-user-check text-3xl text-cr-green mr-4"></i>
+                            <i class="fas fa-user-check text-3xl text-cr-green mr-4" aria-hidden="true"></i>
                             <h3 class="text-2xl font-bold">Empower, Don't Replace</h3>
                         </div>
                         <p class="text-cr-slate">The agent must respect the user's emotional needs and final say, providing reassurance and control at every step.</p>
@@ -536,13 +557,13 @@
             
             <p class="animated-item max-w-4xl text-lg sm:text-xl text-cr-slate">A proactive buying agent that monitors products, notifies you at the perfect moment, and can even purchase on your behalf.</p>
             
-            <img src="assets/price_target_screen.png" alt="Mobile UI mock-up of the Best Time to Buy 2.0 dashboard" class="animated-item mt-8 w-auto h-auto max-h-[65vh] sm:max-h-none sm:h-[600px] transition-transform duration-300 hover:scale-105 mix-blend-multiply">
+            <img src="assets/price_target_screen.png" alt="Mobile UI mock-up of the Best Time to Buy 2.0 dashboard, showing a product with price history and options to set a target." class="animated-item mt-8 w-auto h-auto max-h-[65vh] sm:max-h-none sm:h-[600px] transition-transform duration-300 hover:scale-105 mix-blend-multiply">
         
         </section>
 
         <section class="section flex flex-col items-center justify-center min-h-screen py-20 px-4 sm:px-8 text-center">
             <div class="animated-item text-cr-green mb-6">
-                <i class="fas fa-hand fa-4x"></i>
+                <i class="fas fa-hand fa-4x" aria-hidden="true"></i>
             </div>
             <h2 class="animated-item text-5xl sm:text-6xl font-extrabold tracking-tight mb-4">But there was a catch</h2>
             <p class="animated-item max-w-4xl text-xl sm:text-2xl text-cr-slate">
@@ -559,7 +580,7 @@
         </section>
 
         <section class="section flex flex-col items-center justify-center min-h-screen py-20 px-4 sm:px-8 text-center bg-cr-light-gray">
-            <img src="assets/price_target_screen.png" alt="UI for setting a target price with historical data" class="animated-item mx-auto h-auto max-h-[75vh] w-full max-w-sm md:w-auto md:h-[600px] transition-transform duration-300 hover:scale-105 mix-blend-multiply">
+            <img src="assets/price_target_screen.png" alt="Mobile UI showing a price target screen for a product, with historical price data visualized." class="animated-item mx-auto h-auto max-h-[75vh] w-full max-w-sm md:w-auto md:h-[600px] transition-transform duration-300 hover:scale-105 mix-blend-multiply">
             <blockquote class="animated-item mt-8 text-lg md:text-xl italic text-cr-dark max-w-5xl">"I want the agent to get the best deal it can, but I’m not sure how to set up my criteria to do that"</blockquote>
         </section>
 
@@ -569,7 +590,7 @@
         </section>
 
         <section class="section flex flex-col items-center justify-center min-h-screen py-20 px-4 sm:px-8 text-center">
-            <img src="assets/recommended_adjustments.png" alt="UI showing recommended price targets" class="animated-item mx-auto h-auto max-h-[75vh] w-full max-w-sm md:w-auto md:h-[600px] transition-transform duration-300 hover:scale-105 mix-blend-multiply">
+            <img src="assets/recommended_adjustments.png" alt="Mobile UI showing recommended price target adjustments for a product based on market changes." class="animated-item mx-auto h-auto max-h-[75vh] w-full max-w-sm md:w-auto md:h-[600px] transition-transform duration-300 hover:scale-105 mix-blend-multiply">
             <blockquote class="animated-item mt-8 text-lg md:text-xl italic text-cr-dark max-w-5xl">"I want messages and info saying, 'hey it's not dropping as we expect in the timeline I set.'"</blockquote>
         </section>
 
@@ -614,13 +635,13 @@
 
         <section class="section flex flex-col items-center justify-center min-h-screen py-20 px-4 sm:px-8 text-center bg-cr-dark text-white">
             <p class="animated-item text-4xl sm:text-5xl font-bold mb-6">Thank you for following our journey.</p>
-            <p class="animated-item max-w-2xl text-lg text-gray-400">Together we’re building a smarter, fairer marketplace for everyone.</p>
+            <p class="animated-item max-w-2xl text-lg text-gray-300">Together we’re building a smarter, fairer marketplace for everyone.</p>
         </section>
 
         <section class="section flex flex-col items-center justify-center min-h-screen bg-cr-dark text-white">
             <div class="text-center px-4">
-                <p class="text-base text-gray-400">&copy; Made by Consumer Reports Capstone Team 2025</p>
-                <p class="mt-2 text-sm text-gray-500">A Capstone Project for the MHCI Program</p>
+                <p class="text-base text-gray-300">&copy; Made by Consumer Reports Capstone Team 2025</p>
+                <p class="mt-2 text-sm text-gray-300">A Capstone Project for the MHCI Program</p>
             </div>
         </section>
 
@@ -634,14 +655,16 @@
             const mobileMenu = document.getElementById('mobile-menu');
             if (menuBtn && mobileMenu) {
                 menuBtn.addEventListener('click', () => {
-                    mobileMenu.classList.toggle('hidden');
+                    const isHidden = mobileMenu.classList.toggle('hidden');
                     const icon = menuBtn.querySelector('i');
-                    if (mobileMenu.classList.contains('hidden')) {
+                    if (isHidden) {
                         icon.classList.remove('fa-times');
                         icon.classList.add('fa-bars');
+                        menuBtn.setAttribute('aria-expanded', 'false');
                     } else {
                         icon.classList.remove('fa-bars');
                         icon.classList.add('fa-times');
+                        menuBtn.setAttribute('aria-expanded', 'true');
                     }
                 });
             }

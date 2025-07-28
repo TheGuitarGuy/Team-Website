@@ -12,9 +12,9 @@
       theme: {
         extend: {
           colors: {
-            'cr-green': '#00B96F',
+            'cr-green': '#00875A',
             'cr-dark': '#111827',
-            'cr-slate': '#4A5568',
+            'cr-slate': '#4A5568', // This is still used for general body text on white/light-gray, which passes.
             'cr-light-gray': '#F3F4F6',
           }
         }
@@ -23,34 +23,54 @@
     </script>
     <style>
         body { font-family: 'Inter', sans-serif; }
+
+        /* Basic focus outline for accessibility */
+        :focus-visible {
+            outline: 2px solid #00B96F; /* cr-green */
+            outline-offset: 2px;
+        }
+
+        /* Utility class for screen readers */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border-width: 0;
+        }
     </style>
 </head>
 <body class="bg-white text-cr-dark flex flex-col min-h-screen">
+    <a href="#main-content" class="sr-only focus:not-sr-only absolute left-0 top-0 bg-cr-green text-white p-3 rounded-br-lg z-50">Skip to main content</a>
 
     <header class="border-b border-gray-200 sticky top-0 bg-white/90 backdrop-blur-lg z-30">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
-                <a href="index.html" class="text-2xl font-bold text-cr-dark">Best Time to Buy <span class="text-cr-green">2.0</span></a>
-                <nav class="hidden md:flex space-x-8">
-                    <a href="solution.html" class="text-gray-500 hover:text-cr-green">Our Solution</a>
-                    <a href="team.html" class="text-cr-green font-semibold">The Team</a>
-                    <a href="process.html" class="text-gray-500 hover:text-cr-green">Our Process</a>
+                <a href="index.html" class="text-2xl font-bold text-cr-dark" aria-label="Best Time to Buy 2.0 - Home">Best Time to Buy <span class="text-cr-green">2.0</span></a>
+                <nav class="hidden md:flex space-x-8" aria-label="Main navigation">
+                    <a href="solution.html" class="text-cr-dark hover:text-cr-green">Our Solution</a>
+                    <a href="team.html" class="text-cr-green font-semibold" aria-current="page">The Team</a>
+                    <a href="process.html" class="text-cr-dark hover:text-cr-green">Our Process</a>
                 </nav>
                 <div class="md:hidden">
-                    <button id="menu-btn" class="text-cr-dark focus:outline-none">
+                    <button id="menu-btn" class="text-cr-dark focus:outline-none" aria-label="Open mobile menu" aria-expanded="false" aria-controls="mobile-menu">
                         <i class="fas fa-bars fa-lg"></i>
                     </button>
                 </div>
             </div>
         </div>
-        <div id="mobile-menu" class="hidden md:hidden">
-            <a href="solution.html" class="block text-center py-4 text-gray-500 hover:bg-cr-green hover:text-white transition-colors duration-300">Our Solution</a>
-            <a href="team.html" class="block text-center py-4 text-cr-green font-semibold hover:bg-cr-green hover:text-white transition-colors duration-300">The Team</a>
-            <a href="process.html" class="block text-center py-4 text-gray-500 hover:bg-cr-green hover:text-white transition-colors duration-300">Our Process</a>
+        <div id="mobile-menu" class="hidden md:hidden" role="menu" aria-label="Mobile navigation">
+            <a href="solution.html" class="block text-center py-4 text-cr-dark hover:bg-cr-green hover:text-white transition-colors duration-300" role="menuitem">Our Solution</a>
+            <a href="team.html" class="block text-center py-4 text-cr-green font-semibold hover:bg-cr-green hover:text-white transition-colors duration-300" role="menuitem">The Team</a>
+            <a href="process.html" class="block text-center py-4 text-cr-dark hover:bg-cr-green hover:text-white transition-colors duration-300" role="menuitem">Our Process</a>
         </div>
     </header>
 
-    <main class="flex-grow">
+    <main id="main-content" class="flex-grow">
         <section id="team" class="py-20 sm:py-24">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="max-w-3xl mx-auto text-center">
@@ -63,45 +83,45 @@
                     <div class="flex flex-col items-center text-center w-64 flex-shrink-0">
                         <img class="mx-auto h-48 w-48 rounded-full object-cover" src="assets/anika.png" alt="Headshot of Anika Jain">
                         <h3 class="mt-6 text-xl font-semibold leading-7 tracking-tight text-cr-dark">Anika Jain</h3>
-                        <a href="https://www.linkedin.com/in/anikaj2/" target="_blank" rel="noopener noreferrer" class="mt-1 inline-flex items-center gap-x-1.5 text-cr-green hover:underline">
+                        <a href="https://www.linkedin.com/in/anikaj2/" target="_blank" rel="noopener noreferrer" class="mt-1 inline-flex items-center gap-x-1.5 text-cr-dark hover:underline">
                             <span class="text-sm font-medium">LinkedIn</span>
-                            <i class="fas fa-arrow-up-right-from-square text-xs"></i>
+                            <i class="fas fa-arrow-up-right-from-square text-xs" aria-hidden="true"></i>
                         </a>
                     </div>
 
                     <div class="flex flex-col items-center text-center w-64 flex-shrink-0">
                         <img class="mx-auto h-48 w-48 rounded-full object-cover" src="assets/brenna.png" alt="Headshot of Brenna Lindblad">
                         <h3 class="mt-6 text-xl font-semibold leading-7 tracking-tight text-cr-dark">Brenna Lindblad</h3>
-                        <a href="https://www.linkedin.com/in/brennalindblad/" target="_blank" rel="noopener noreferrer" class="mt-1 inline-flex items-center gap-x-1.5 text-cr-green hover:underline">
+                        <a href="https://www.linkedin.com/in/brennalindblad/" target="_blank" rel="noopener noreferrer" class="mt-1 inline-flex items-center gap-x-1.5 text-cr-dark hover:underline">
                             <span class="text-sm font-medium">LinkedIn</span>
-                            <i class="fas fa-arrow-up-right-from-square text-xs"></i>
+                            <i class="fas fa-arrow-up-right-from-square text-xs" aria-hidden="true"></i>
                         </a>
                     </div>
 
                     <div class="flex flex-col items-center text-center w-64 flex-shrink-0">
                         <img class="mx-auto h-48 w-48 rounded-full object-cover" src="assets/esther.png" alt="Headshot of Esther Kim">
                         <h3 class="mt-6 text-xl font-semibold leading-7 tracking-tight text-cr-dark">Esther Kim</h3>
-                        <a href="https://www.linkedin.com/in/estherykim312/" target="_blank" rel="noopener noreferrer" class="mt-1 inline-flex items-center gap-x-1.5 text-cr-green hover:underline">
+                        <a href="https://www.linkedin.com/in/estherykim312/" target="_blank" rel="noopener noreferrer" class="mt-1 inline-flex items-center gap-x-1.5 text-cr-dark hover:underline">
                             <span class="text-sm font-medium">LinkedIn</span>
-                            <i class="fas fa-arrow-up-right-from-square text-xs"></i>
+                            <i class="fas fa-arrow-up-right-from-square text-xs" aria-hidden="true"></i>
                         </a>
                     </div>
 
                     <div class="flex flex-col items-center text-center w-64 flex-shrink-0">
                         <img class="mx-auto h-48 w-48 rounded-full object-cover" src="assets/grace.png" alt="Headshot of Grace Conard">
                         <h3 class="mt-6 text-xl font-semibold leading-7 tracking-tight text-cr-dark">Grace Conard</h3>
-                        <a href="https://www.linkedin.com/in/graceconard/" target="_blank" rel="noopener noreferrer" class="mt-1 inline-flex items-center gap-x-1.5 text-cr-green hover:underline">
+                        <a href="https://www.linkedin.com/in/graceconard/" target="_blank" rel="noopener noreferrer" class="mt-1 inline-flex items-center gap-x-1.5 text-cr-dark hover:underline">
                             <span class="text-sm font-medium">LinkedIn</span>
-                            <i class="fas fa-arrow-up-right-from-square text-xs"></i>
+                            <i class="fas fa-arrow-up-right-from-square text-xs" aria-hidden="true"></i>
                         </a>
                     </div>
 
                     <div class="flex flex-col items-center text-center w-64 flex-shrink-0">
                         <img class="mx-auto h-48 w-48 rounded-full object-cover" src="assets/kennion.png" alt="Headshot of Kennion Gubler">
                         <h3 class="mt-6 text-xl font-semibold leading-7 tracking-tight text-cr-dark">Kennion Gubler</h3>
-                        <a href="https://www.linkedin.com/in/kennion-gubler/" target="_blank" rel="noopener noreferrer" class="mt-1 inline-flex items-center gap-x-1.5 text-cr-green hover:underline">
+                        <a href="https://www.linkedin.com/in/kennion-gubler/" target="_blank" rel="noopener noreferrer" class="mt-1 inline-flex items-center gap-x-1.5 text-cr-dark hover:underline">
                             <span class="text-sm font-medium">LinkedIn</span>
-                            <i class="fas fa-arrow-up-right-from-square text-xs"></i>
+                            <i class="fas fa-arrow-up-right-from-square text-xs" aria-hidden="true"></i>
                         </a>
                     </div>
                 </div>
@@ -112,8 +132,8 @@
     <footer class="bg-cr-dark text-white">
         <div class="container mx-auto py-12 px-4 sm:px-6 lg:px-8">
             <div class="text-center">
-                <p class="text-base text-gray-400">&copy; Made by Consumer Reports Capstone Team 2025</p>
-                <p class="mt-2 text-sm text-gray-500">A Capstone Project for the MHCI Program</p>
+                <p class="text-base text-gray-300">&copy; Made by Consumer Reports Capstone Team 2025</p>
+                <p class="mt-2 text-sm text-gray-300">A Capstone Project for the MHCI Program</p>
             </div>
         </div>
     </footer>
@@ -124,14 +144,16 @@
             const mobileMenu = document.getElementById('mobile-menu');
             if (menuBtn && mobileMenu) {
                 menuBtn.addEventListener('click', () => {
-                mobileMenu.classList.toggle('hidden');
+                const isHidden = mobileMenu.classList.toggle('hidden');
                 const icon = menuBtn.querySelector('i');
-                if (mobileMenu.classList.contains('hidden')) {
+                if (isHidden) {
                     icon.classList.remove('fa-times');
                     icon.classList.add('fa-bars');
+                    menuBtn.setAttribute('aria-expanded', 'false');
                 } else {
                     icon.classList.remove('fa-bars');
                     icon.classList.add('fa-times');
+                    menuBtn.setAttribute('aria-expanded', 'true');
                 }
                 });
             }
