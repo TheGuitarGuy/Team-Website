@@ -118,6 +118,42 @@
             white-space: nowrap;
             border-width: 0;
         }
+
+        /* Custom styles for images to maintain aspect ratio */
+        .aspect-ratio-img {
+            width: 100%; /* Ensure it takes full width of its container */
+            height: auto; /* Allow height to adjust based on aspect ratio */
+            object-fit: contain; /* Ensure image is fully visible and maintains aspect ratio */
+        }
+
+        /* Responsive adjustments for specific images if needed */
+        .home-depot-img {
+            max-height: 50vh; /* Default max height for mobile */
+        }
+        @media (min-width: 768px) {
+            .home-depot-img {
+                max-height: 65vh; /* Larger max height for desktop */
+            }
+        }
+
+        /* For the mobile UI mock-ups, ensuring consistent height for comparison on desktop */
+        .mobile-ui-mockup {
+            width: auto; /* Let width be determined by height and aspect ratio */
+            height: auto; /* Default for mobile, allows aspect ratio to dictate height */
+            max-height: 65vh; /* Max height on smaller screens */
+        }
+        @media (min-width: 640px) { /* sm breakpoint */
+            .mobile-ui-mockup {
+                height: 600px; /* Fixed height for consistency on larger screens */
+                max-height: none; /* Remove max height constraint */
+            }
+        }
+
+        /* For wizard images, keep them object-contain */
+        .wizard-img {
+            object-fit: contain;
+        }
+
     </style>
 </head>
 
@@ -153,7 +189,7 @@
 
         <section class="section flex flex-col items-center justify-center min-h-screen py-20 px-4 sm:px-8 text-center">
             <img src="assets/cr_logo.png" alt="Consumer Reports Logo" class="animated-item h-20 mb-8 rounded-md">
-            <h1 class="animated-item text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight mb-6">Agentic AI for Consumer Empowerment</h1>
+            <h1 class="animated-item text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight mb-6">Creating an Agentic AI for Consumer Empowerment</h1>
             <p class="animated-item max-w-4xl text-lg sm:text-xl text-cr-slate">This project explores how agentic AI, a technology capable of acting autonomously on behalf of users, can be leveraged to address critical consumer pain points and enhance the trusted advocacy of Consumer Reports.</p>
         </section>
 
@@ -165,7 +201,7 @@
         <section class="section flex flex-col items-center justify-center min-h-screen py-20 px-4 sm:px-8 text-center">
             <h2 class="animated-item text-4xl sm:text-5xl font-bold mb-6">Our Journey Started on the Ground</h2>
             <p class="animated-item max-w-5xl text-lg sm:text-xl text-cr-slate">To discover the right answer, we left the office. We conducted 12 preliminary in-store intercept interviews at retailers like Best Buy and Home Depot and 15 interviews with consumers from our networks.</p>
-            <img src="assets/home_depot.png" alt="Team member conducting research in a retail store at Home Depot" class="animated-item mt-10 rounded-lg shadow-lg w-auto max-h-[50vh] md:max-h-65vh transition-transform duration-300 hover:scale-105">
+            <img src="assets/home_depot.png" alt="Team member conducting research in a retail store at Home Depot" class="animated-item mt-10 rounded-lg shadow-lg w-auto aspect-ratio-img home-depot-img transition-transform duration-300 hover:scale-105">
         </section>
 
         <section class="section flex flex-col items-center justify-center min-h-screen py-20 px-4 sm:px-8 text-center bg-cr-light-gray">
@@ -309,7 +345,7 @@
         <section class="section flex flex-col items-center justify-center min-h-screen py-20 px-4 sm:px-8 bg-white">
             <div class="max-w-6xl w-full flex flex-col md:grid md:grid-cols-3 gap-8 md:gap-16 items-center">
                 <div class="animated-item order-last md:order-first mt-10 md:mt-0 md:col-span-2 flex items-center justify-center">
-                    <img src="assets/agentic.png" alt="Chart showing the differences between assistive, autonomous, and agentic systems, with agentic AI defined as proactive, autonomous, and goal-oriented." aria-label="Visual explanation of Agentic AI capabilities">
+                    <img src="assets/agentic.png" alt="Chart showing the differences between assistive, autonomous, and agentic systems, with agentic AI defined as proactive, autonomous, and goal-oriented." aria-label="Visual explanation of Agentic AI capabilities" class="aspect-ratio-img">
                 </div>
                 <div class="text-left">
                     <div class="animated-item text-cr-green mb-4"><i class="fas fa-brain fa-3x" aria-hidden="true"></i></div>
@@ -331,7 +367,7 @@
                     </p>
                 </div>
                 <div class="animated-item mt-10 md:mt-0 h-80 flex items-center justify-center">
-                    <img src="assets/venn_1.png" alt="Venn diagram illustrating the intersection of consumer needs, agentic AI capabilities, and market feasibility." aria-label="Conceptual diagram of solution fit">
+                    <img src="assets/venn_1.png" alt="Venn diagram illustrating the intersection of consumer needs, agentic AI capabilities, and market feasibility." aria-label="Conceptual diagram of solution fit" class="aspect-ratio-img">
                 </div>
             </div>
         </section>
@@ -405,8 +441,8 @@
 
         <section class="section flex flex-col items-center justify-center min-h-screen py-20 px-4 sm:px-8 text-center bg-cr-light-gray">
             <h2 class="animated-item text-3xl sm:text-4xl md:text-5xl font-bold mb-4">The Want vs. Need Spectrum</h2>
-            <p class="animated-item max-w-5xl text-lg sm:text-xl text-cr-slate">We discovered a fundamental split in how people shop. A **need** is urgent, your microwave just broke. A **want** can wait, you’re considering an air fryer but you’ll buy when the timing and price are right. That “waiting to buy” space, where 93% of our participants lived, represents a massive, unmet need.</p>
-            <img src="assets/want_need.png" alt="Diagram illustrating the 'want versus need' spectrum of purchases, showing that 93% of survey participants fall into the 'want' category, indicating a large market for deferred purchases." class="animated-item h-60 sm:h-72 md:h-80 mt-8 object-contain">
+            <p class="animated-item max-w-5xl text-lg sm:text-xl text-cr-slate">We discovered a fundamental split in how people shop. A need is urgent, your microwave just broke. A  want can wait, you’re considering an air fryer but you’ll buy when the timing and price are right. That “waiting to buy” space, where 93% of our participants lived, represents a massive, unmet need.</p>
+            <img src="assets/want_need.png" alt="Diagram illustrating the 'want versus need' spectrum of purchases, showing that 93% of survey participants fall into the 'want' category, indicating a large market for deferred purchases." class="animated-item h-60 sm:h-72 md:h-80 mt-8 object-contain aspect-ratio-img">
         </section>
         <section class="section flex flex-col items-center justify-center min-h-screen py-20 px-4 sm:px-8 text-center bg-white">
             <div class="max-w-5xl w-full">
@@ -415,8 +451,8 @@
                 <p class="animated-item text-lg sm:text-xl text-cr-slate">Our early findings pointed to a powerful idea: an AI agent that buys things for you. But would anyone trust it? To find out, we ran a "Wizard of Oz" test. In 45-minute sessions, 11 participants interacted via text with what they thought was an AI. In reality, it was one of us, acting as the agent to discover the moments that build or break trust.</p>
         
                 <div class="animated-item mt-10 flex flex-col md:flex-row gap-4 sm:gap-6 justify-center">
-                    <img src="assets/wizard.JPG" alt="A person wearing a wizard hat, looking at a laptop, representing the 'Wizard of Oz' test setup." class="w-full md:w-1/3 h-[400px] object-contain bg-cr-light-gray p-2 rounded-lg shadow-md">
-                    <img src="assets/ranking.jpg" alt="A screenshot of a user interface showing a ranking or feedback system, likely used in the Wizard of Oz test." class="w-full md:w-2/3 h-[400px] object-contain bg-cr-light-gray p-2 rounded-lg shadow-md">
+                    <img src="assets/wizard.JPG" alt="A person wearing a wizard hat, looking at a laptop, representing the 'Wizard of Oz' test setup." class="w-full md:w-1/3 h-[400px] wizard-img bg-cr-light-gray p-2 rounded-lg shadow-md">
+                    <img src="assets/ranking.jpg" alt="A screenshot of a user interface showing a ranking or feedback system, likely used in the Wizard of Oz test." class="w-full md:w-2/3 h-[400px] wizard-img bg-cr-light-gray p-2 rounded-lg shadow-md">
                 </div>
             </div>
         </section>
@@ -557,7 +593,7 @@
             
             <p class="animated-item max-w-4xl text-lg sm:text-xl text-cr-slate">A proactive buying agent that monitors products, notifies you at the perfect moment, and can even purchase on your behalf.</p>
             
-            <img src="assets/price_target_screen.png" alt="Mobile UI mock-up of the Best Time to Buy 2.0 dashboard, showing a product with price history and options to set a target." class="animated-item mt-8 w-auto h-auto max-h-[65vh] sm:max-h-none sm:h-[600px] transition-transform duration-300 hover:scale-105 mix-blend-multiply">
+            <img src="assets/price_target_screen.png" alt="Mobile UI mock-up of the Best Time to Buy 2.0 dashboard, showing a product with price history and options to set a target." class="animated-item mt-8 w-auto mobile-ui-mockup aspect-ratio-img transition-transform duration-300 hover:scale-105 mix-blend-multiply">
         
         </section>
 
@@ -580,7 +616,7 @@
         </section>
 
         <section class="section flex flex-col items-center justify-center min-h-screen py-20 px-4 sm:px-8 text-center bg-cr-light-gray">
-            <img src="assets/price_target_screen.png" alt="Mobile UI showing a price target screen for a product, with historical price data visualized." class="animated-item mx-auto h-auto max-h-[75vh] w-full max-w-sm md:w-auto md:h-[600px] transition-transform duration-300 hover:scale-105 mix-blend-multiply">
+            <img src="assets/price_target_screen.png" alt="Mobile UI showing a price target screen for a product, with historical price data visualized." class="animated-item mx-auto w-full max-w-sm mobile-ui-mockup aspect-ratio-img transition-transform duration-300 hover:scale-105 mix-blend-multiply">
             <blockquote class="animated-item mt-8 text-lg md:text-xl italic text-cr-dark max-w-5xl">"I want the agent to get the best deal it can, but I’m not sure how to set up my criteria to do that"</blockquote>
         </section>
 
@@ -590,7 +626,7 @@
         </section>
 
         <section class="section flex flex-col items-center justify-center min-h-screen py-20 px-4 sm:px-8 text-center">
-            <img src="assets/recommended_adjustments.png" alt="Mobile UI showing recommended price target adjustments for a product based on market changes." class="animated-item mx-auto h-auto max-h-[75vh] w-full max-w-sm md:w-auto md:h-[600px] transition-transform duration-300 hover:scale-105 mix-blend-multiply">
+            <img src="assets/recommended_adjustments.png" alt="Mobile UI showing recommended price target adjustments for a product based on market changes." class="animated-item mx-auto w-full max-w-sm mobile-ui-mockup aspect-ratio-img transition-transform duration-300 hover:scale-105 mix-blend-multiply">
             <blockquote class="animated-item mt-8 text-lg md:text-xl italic text-cr-dark max-w-5xl">"I want messages and info saying, 'hey it's not dropping as we expect in the timeline I set.'"</blockquote>
         </section>
 
